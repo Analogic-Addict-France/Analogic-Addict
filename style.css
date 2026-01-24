@@ -110,3 +110,29 @@ input, textarea {
     border: 1px solid var(--primary);
     color: white;
 }
+/* Bouton Wiki spécial */
+.wiki-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(90deg, var(--primary), #4a384a);
+    padding: 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    margin: 20px 0;
+    transition: transform 0.2s;
+}
+.wiki-btn:hover { transform: scale(1.02); }
+
+/* Layout Grille pour Accueil */
+.home-grid {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 30px;
+}
+
+@media (max-width: 800px) {
+    .home-grid { grid-template-columns: 1fr; }
+}
