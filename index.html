@@ -18,11 +18,12 @@
             background-color: var(--bg);
             color: var(--text);
             margin: 0;
-            line-height: 1.6;
+            padding: 0;
         }
 
+        /* Nav Responsive */
         nav {
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(10px);
             padding: 10px 0;
             position: sticky;
@@ -37,102 +38,103 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 20px;
+            padding: 0 15px;
         }
 
-        .logo img { height: 40px; width: auto; display: block; }
+        .logo img { height: 35px; width: auto; }
 
-        .nav-links { display: flex; gap: 25px; }
-        .nav-links a { color: white; text-decoration: none; font-weight: 500; transition: 0.3s; }
-        .nav-links a:hover { color: var(--primary); }
+        .nav-links { display: flex; gap: 15px; }
+        .nav-links a { color: white; text-decoration: none; font-size: 0.9em; }
 
-        .container { max-width: 1100px; margin: auto; padding: 20px; }
+        .container { max-width: 1100px; margin: auto; padding: 15px; }
 
+        /* Bouton Wiki */
         .wiki-btn {
             display: flex;
             justify-content: space-between;
             align-items: center;
             background: linear-gradient(90deg, var(--primary), #4a384a);
-            padding: 20px;
+            padding: 15px;
             border-radius: 10px;
             text-decoration: none;
             color: white;
             font-weight: bold;
-            margin: 20px 0;
-            transition: 0.3s;
-        }
-
-        /* Grille principale avec alignement vertical */
-        .home-grid {
-            display: grid;
-            grid-template-columns: 1fr 350px;
-            gap: 30px;
-            margin-top: 30px;
-            align-items: stretch; /* Force les colonnes à avoir la même hauteur */
-        }
-
-        /* Colonne de gauche flexible */
-        #music-section {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between; /* Pousse le bouton en bas */
-        }
-
-        .music-card {
-            background: var(--card-bg);
-            border-radius: 15px;
-            padding: 25px;
-            border-left: 5px solid var(--primary);
-            flex-grow: 1; /* Prend tout l'espace disponible */
             margin-bottom: 20px;
         }
 
+        /* Grille Principale (PC vs Mobile) */
+        .home-grid {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 20px;
+        }
+
+        /* Layout de la carte Musique */
+        .music-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 20px;
+            border-left: 5px solid var(--primary);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        /* Organisation Image/Texte sur PC */
+        .music-content-wrapper {
+            display: flex;
+            flex-direction: row; /* Image gauche, texte droite */
+            gap: 20px;
+        }
+
         .music-img {
-            width: 100%;
-            max-height: 250px;
+            width: 40%;
+            max-height: 300px;
             object-fit: cover;
             border-radius: 10px;
-            margin-bottom: 15px;
+        }
+
+        .music-info {
+            width: 60%;
         }
 
         .playing-animation {
-            display: flex;
-            gap: 4px;
-            height: 20px;
-            align-items: flex-end;
+            display: inline-flex;
+            gap: 3px;
+            height: 15px;
             margin-left: 10px;
         }
+        .bar { width: 3px; background: var(--primary); animation: bounce 1s infinite; }
 
-        .bar {
-            width: 4px;
-            background: var(--primary);
-            animation: bounce 1s ease-in-out infinite;
-        }
-
-        @keyframes bounce { 0%, 100% { height: 5px; } 50% { height: 20px; } }
+        @keyframes bounce { 0%, 100% { height: 5px; } 50% { height: 15px; } }
 
         .btn {
             background: var(--primary);
             color: white;
-            padding: 12px 20px;
-            border: none;
+            padding: 12px;
             border-radius: 8px;
-            cursor: pointer;
             text-decoration: none;
-            display: inline-block;
-            font-weight: bold;
-            transition: 0.3s;
-            text-align: center;
-        }
-
-        .discord-widget iframe {
-            border-radius: 15px;
             display: block;
+            text-align: center;
+            font-weight: bold;
+            border: none;
+            width: 100%;
+            margin-top: 10px;
+            cursor: pointer;
         }
 
-        @media (max-width: 900px) {
-            .home-grid { grid-template-columns: 1fr; }
-            .music-card { margin-bottom: 20px; }
+        /* RESPONSIVE TELEPHONE */
+        @media (max-width: 850px) {
+            .home-grid { grid-template-columns: 1fr; } /* Discord passe en dessous */
+            
+            .music-content-wrapper {
+                flex-direction: column; /* Image dessus, texte dessous */
+            }
+
+            .music-img { width: 100%; }
+            .music-info { width: 100%; }
+
+            .discord-widget iframe { width: 100%; }
         }
     </style>
 </head>
@@ -153,21 +155,19 @@
 
 <div class="container">
     <a href="wiki.html" class="wiki-btn">
-        <span>📚 EXPLORER LES ARCHIVES</span>
-        <span>Aller sur le wiki →</span>
+        <span>EXPLORER LE WIKI</span>
+        <span>→</span>
     </a>
 
     <div class="home-grid">
         <div id="music-section">
             <div id="music-container" class="music-card">
                 </div>
-            <button class="btn" onclick="copyDiscordFormat()" style="background:#333; border: 1px solid var(--primary);">
-                📋 Copier le format Discord
-            </button>
+            <button class="btn" onclick="copyDiscordFormat()" style="background:#333;">📋 Copier pour Discord</button>
         </div>
 
         <div class="discord-widget">
-            <iframe src="https://discord.com/widget?id=1183880368173096983&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+            <iframe src="https://discord.com/widget?id=1183880368173096983&theme=dark" width="100%" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
         </div>
     </div>
 </div>
@@ -177,60 +177,63 @@
     let musicData = {};
 
     fetch('data.json')
-        .then(response => response.json())
+        .then(r => r.json())
         .then(data => {
             musicData = data;
+            // Sécurité pour éviter les "undefined"
+            const title = data.titre || "Titre inconnu";
+            const artist = data.artiste || "Artiste inconnu";
+            const album = data.album || "Album";
+            const genre = data.genre || "Non défini";
+
             document.getElementById('music-container').innerHTML = `
-                <img src="${data.image}" class="music-img">
-                <div style="display:flex; align-items:center;">
-                    <h2 style="margin:0;">${data.titre}</h2>
-                    <div class="playing-animation">
-                        <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                <h2 style="margin:0 0 10px 0;">${title} 
+                    <div class="playing-animation"><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
+                </h2>
+                <div class="music-content-wrapper">
+                    <img src="${data.image}" class="music-img">
+                    <div class="music-info">
+                        <p style="color:var(--primary); font-weight:bold; margin:0;">${artist} — ${album}</p>
+                        <p style="font-size:0.9em; margin:10px 0;">
+                            <strong>Genre :</strong> ${genre}<br>
+                            <strong>Langue :</strong> ${data.langue || 'Français'}<br>
+                            <strong>Date :</strong> ${data.date || 'Inconnue'}
+                        </p>
+                        <div style="background:rgba(0,0,0,0.2); padding:10px; border-radius:8px; font-size:0.85em;">
+                            ${data.histoire || 'Pas d\'histoire enregistrée.'}
+                        </div>
                     </div>
-                </div>
-                <p style="color:var(--primary); font-weight:bold; margin:5px 0;">${data.artiste} — ${data.album}</p>
-                <p style="font-size:0.9em; margin:5px 0;"><strong>Genre :</strong> ${data.genre} | <strong>Langue :</strong> ${data.langue}</p>
-                <p style="font-size:0.9em; margin:5px 0;"><strong>Sortie :</strong> ${data.date}</p>
-                <div style="background:rgba(0,0,0,0.2); padding:10px; border-radius:8px; margin-top:10px; font-size:0.9em;">
-                    ${data.histoire}
                 </div>
             `;
 
-            const videoId = data.url.split('v=')[1]?.split('&')[0];
+            const videoId = data.url?.split('v=')[1]?.split('&')[0];
             if(videoId) initYouTubeAPI(videoId);
         });
 
-    function initYouTubeAPI(videoId) {
+    function initYouTubeAPI(vId) {
         const tag = document.createElement('script');
         tag.src = "https://www.youtube.com/iframe_api";
         document.head.appendChild(tag);
-
-        window.onYouTubeIframeAPIReady = function() {
+        window.onYouTubeIframeAPIReady = () => {
             player = new YT.Player('youtube-player', {
-                height: '0', width: '0', videoId: videoId,
-                playerVars: { 'autoplay': 1, 'loop': 1, 'playlist': videoId },
-                events: { 'onReady': onPlayerReady }
+                height: '0', width: '0', videoId: vId,
+                playerVars: { 'autoplay': 1, 'loop': 1, 'playlist': vId },
+                events: { 'onReady': (e) => {
+                    e.target.setVolume(0);
+                    document.body.addEventListener('click', () => {
+                        e.target.playVideo();
+                        let v = 0;
+                        let i = setInterval(() => { if(v<20){v++; e.target.setVolume(v);} else clearInterval(i); }, 150);
+                    }, {once:true});
+                }}
             });
         };
     }
 
-    function onPlayerReady(event) {
-        event.target.setVolume(0);
-        document.body.addEventListener('click', () => {
-            event.target.playVideo();
-            let vol = 0;
-            let interval = setInterval(() => {
-                if (vol < 20) { vol += 1; event.target.setVolume(vol); } 
-                else { clearInterval(interval); }
-            }, 150);
-        }, { once: true });
-    }
-
     function copyDiscordFormat() {
-        const text = `<@&1342094598822166588> \n\n# VOICI LA MUSIQUE DU DEMI MOIS !!\n\n- **Titre** : ${musicData.titre}\n- **Artiste** : ${musicData.artiste}\n- **Date de sortie** : ${musicData.date}\n- **Album** : ${musicData.album}\n- **Genre** : ${musicData.genre}\n- **Support existant** : ${musicData.format}\n- **Langue** : ${musicData.langue}\n\n## Histoire :\n- ${musicData.histoire}\n\n## Liens streaming :\n[Youtube](${musicData.url})`;
-        navigator.clipboard.writeText(text).then(() => alert("Format Discord copié !"));
+        const text = `<@&1342094598822166588> \n\n# MUSIQUE DU JOUR\n- **Titre** : ${musicData.titre}\n- **Artiste** : ${musicData.artiste}\n- **Album** : ${musicData.album}\n- **Lien** : ${musicData.url}`;
+        navigator.clipboard.writeText(text).then(() => alert("Copié !"));
     }
 </script>
-
 </body>
 </html>
