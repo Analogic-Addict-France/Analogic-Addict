@@ -1,0 +1,23 @@
+<div class="container">
+    <h1>Wiki</h1>
+    <input type="text" id="search" onkeyup="filterWiki()" placeholder="Chercher une page ou catégorie...">
+    
+    <ul id="wikiList" style="list-style: none; padding: 0;">
+        <li style="margin-bottom: 10px;">
+            <a href="wiki-lorem.html" class="btn" style="width: 100%; background: #252525;">
+                Lorem Ipsum <span style="font-size: 0.8em; color: var(--primary);">[Exemple]</span>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<script>
+    function filterWiki() {
+        let input = document.getElementById('search').value.toLowerCase();
+        let items = document.getElementById('wikiList').getElementsByTagName('li');
+        for (let i = 0; i < items.length; i++) {
+            let txt = items[i].textContent || items[i].innerText;
+            items[i].style.display = txt.toLowerCase().includes(input) ? "" : "none";
+        }
+    }
+</script>
