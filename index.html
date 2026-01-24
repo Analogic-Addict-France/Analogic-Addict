@@ -125,11 +125,16 @@
     max-height: 80px; 
     transition: max-height 0.4s ease-out;
     overflow: hidden;
-    
-    /* CORRECTIONS ALIGNEMENT ET DÉBORDEMENT */
-    text-align: left;          /* Le texte commence bien à gauche */
-    white-space: pre-wrap;     /* Garde tes sauts de ligne du JSON */
-    overflow-wrap: break-word; /* Coupe les mots trop longs si besoin */
+    /* Aligne le texte à gauche et gère les mots longs */
+    text-align: left;          
+    white-space: pre-wrap;     
+    overflow-wrap: break-word; 
+    display: block;
+}
+
+.music-info {
+    text-align: left !important; /* Force l'alignement à gauche pour tout le bloc */
+
 }
 
 #music-history.expanded {
@@ -209,23 +214,21 @@
             musicData = currentMusic;
 
             document.getElementById('music-container').innerHTML = `
-                <h2 style="margin:0 0 10px 0;">${currentMusic.titre} 
+                <h2 style="text-align: left; margin:0 0 10px 0;">${currentMusic.titre} 
                     <div class="playing-animation"><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
                 </h2>
                 <div class="music-content-wrapper">
                     <img src="${currentMusic.image}" class="music-img" alt="Pochette">
-                    <div class="music-info" style="text-align: left;">
+                    <div class="music-info">
                         <p style="color:var(--primary); font-weight:bold; margin:0;">
                             ${currentMusic.artiste} — ${currentMusic.album}
                         </p>
-                        
                         <div style="font-size:0.9em; margin:10px 0; line-height: 1.5;">
                             <strong>Genre :</strong> ${currentMusic.genre}<br>
                             <strong>Format :</strong> ${currentMusic.format}<br>
                             <strong>Langue :</strong> ${currentMusic.langue}<br>
                             <strong>Sortie :</strong> ${currentMusic.date}
                         </div>
-                        
                         <div class="history-wrapper">
                             <div id="music-history">
                                 ${currentMusic.histoire}
@@ -236,10 +239,14 @@
                 </div>
             `;
 
-            // Gestion du bouton YouTube
+            // Bouton YouTube
             const actionButtons = document.querySelector('.action-buttons');
+            const oldYt = document.getElementById('yt-dynamic-btn');
+            if(oldYt) oldYt.remove();
+
             if (currentMusic.url) {
                 const ytBtn = document.createElement('a');
+                ytBtn.id = "yt-dynamic-btn";
                 ytBtn.href = currentMusic.url;
                 ytBtn.target = "_blank";
                 ytBtn.className = "btn"; 
@@ -264,6 +271,19 @@
             historyDiv.classList.add('expanded');
             btn.innerText = "RÉDUIRE";
         }
+    }
+
+    function copyDiscordFormat() {
+        if (!musicData.titre) return;
+
+        // Ton nouveau format Discord avec toutes les infos
+        const text = `<@&1342094598822166588> \n\n# VOICI LA MUSIQUE DU JOUR !!\n\n- **Titre** : ${musicData.titre}\n- **Artiste** : ${musicData.artiste}\n- **Date de sortie** : ${musicData.date}\n- **Album** : ${musicData.album}\n- **Genre musical** : ${musicData.genre}\n- **Support existant** : ${musicData.format}\n- **Langue** : ${musicData.langue}\n\n## Histoire :\n${musicData.histoire}\n\n## Liens streaming :\n[Youtube](${musicData.url})`;
+
+        navigator.clipboard.writeText(text).then(() => {
+            alert("Format Discord complet copié !");
+        }).catch(err => {
+            console.error('Erreur lors de la copie : ', err);
+        });
     }
 </script>
 </body>
