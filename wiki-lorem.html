@@ -3,40 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wiki - Lorem Ipsum</title>
+    <title>Wiki - Guide d'achat Platines</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Conteneur principal */
+        .container { max-width: 1100px; margin: auto; padding: 20px; }
+
+        /* Barre de filtrage */
+        .filter-section {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: center;
+            border: 1px solid var(--primary);
+        }
+        .filter-section input {
+            background: #1b1b1b;
+            border: 1px solid #444;
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            width: 100px;
+        }
+
+        /* Cartes de platines */
+        .platine-card {
+            display: flex;
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            gap: 20px;
+            border-left: 5px solid var(--primary);
+            transition: transform 0.2s;
+        }
+        .platine-card:hover { transform: scale(1.01); }
+
+        /* Gestion de l'image par lien */
+        .platine-img { 
+            width: 200px; 
+            height: 200px; 
+            border-radius: 10px; 
+            object-fit: cover; /* Garde les proportions même si le lien est une image rectangulaire */
+            background: #111; 
+        }
+
+        .platine-info { 
+            flex: 1; 
+            display: flex; 
+            flex-direction: column; 
+            text-align: left; 
+        }
+        .price-tag { color: var(--primary); font-weight: bold; font-size: 1.2em; margin-top: auto; }
+        .hidden { display: none; }
+
+        @media (max-width: 600px) {
+            .platine-card { flex-direction: column; align-items: center; text-align: center; }
+            .platine-info { text-align: center; }
+        }
+    </style>
 </head>
 <body>
-<nav>
-    <div class="nav-container">
-        <a href="index.html" class="logo">
-            <img src="img/logo.png" alt="Logo">
-        </a>
 
-        <div class="nav-links">
-            <a href="index.html">Accueil</a>
-            <a href="wiki.html">Wiki</a>
-        </div>
+<div class="container">
+    <header style="margin-bottom: 30px;">
+        <a href="wiki.html" style="color: var(--primary); text-decoration: none;">← Retour au Wiki</a>
+        <h1 style="border-bottom: 2px solid var(--primary); padding-bottom: 10px; margin-top: 10px;">Guide d'achat : Platines Vinyles</h1>
+    </header>
+
+    <div class="filter-section">
+        <span>Budget max :</span>
+        <input type="number" id="maxPrice" placeholder="Ex: 200" value="500">
+        <span>€</span>
+        <button onclick="filtrerPlatines()" style="background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold;">Appliquer</button>
     </div>
-</nav>
-    <div class="container">
-        <header style="margin-bottom: 40px;">
-            <a href="wiki.html" style="color: var(--primary); text-decoration: none;">← Retour au Wiki</a>
-            <h1 style="border-bottom: 2px solid var(--primary); padding-bottom: 10px;">Lorem Ipsum</h1>
-            <small>Catégorie : <strong>Exemple / Design</strong> | Dernière mise à jour : 24 Janvier 2024</small>
-        </header>
 
-        <article style="background: var(--card-bg); padding: 30px; border-radius: 15px; line-height: 1.8;">
-            <h3>Qu'est-ce que le Lorem Ipsum ?</h3>
-            <p>Le <strong>Lorem Ipsum</strong> est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500.</p>
-            
-            <blockquote style="border-left: 4px solid var(--primary); padding-left: 20px; font-style: italic; color: #ccc; margin: 20px 0;">
-                "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
-            </blockquote>
+    <div id="platine-list">
+        <article class="platine-card" data-price="60">
+            <img src="https://cdn.discordapp.com/attachments/1341714407968997407/1342084211330519050/LD0006169862.jpg?ex=6975f3d2&is=6974a252&hm=3c526e211226f26883ef781b2d3e461a60cd3f37b2e2fabc0eba9d128352cc75&" class="platine-img" alt="Platine Valise">
+            <div class="platine-info">
+                <h3>Platine Valise</h3>
+                <p><strong>Avantages :</strong> Transportable, enceintes intégrées, prix imbattable.<br>
+                <strong>Inconvénients :</strong> Qualité sonore limitée, peut user les disques à long terme.</p>
+                <div class="price-tag">60€</div>
+            </div>
+        </article>
 
-            <h3>Pourquoi l'utiliser ?</h3>
-            <p>On sait depuis longtemps que travailler avec du texte lisible et contenant du sens est perturbant lorsqu'on examine le design d'une page. L'avantage du Lorem Ipsum sur un texte générique comme "Du texte ici, du texte ici" est qu'il possède une distribution de lettres plus équilibrée.</p>
+        <article class="platine-card" data-price="130">
+            <img src="https://cdn.discordapp.com/attachments/1341714407968997407/1341873069672763545/Design-sans-titre-44.png?ex=697680ae&is=69752f2e&hm=208445df05d0ce04fec915a0c29fa78e8fd388a352016d90fb6b9455484fd75d&" class="platine-img" alt="LP60x">
+            <div class="platine-info">
+                <h3>Audio-Technica LP60x</h3>
+                <p>Le meilleur choix pour débuter sérieusement sans se ruiner. Elle est entièrement automatique : on appuie sur "Start" et le bras se pose tout seul.</p>
+                <div class="price-tag">130€</div>
+            </div>
+        </article>
+
+        <article class="platine-card" data-price="290">
+            <img src="https://cdn.discordapp.com/attachments/1341714407968997407/1342081964534141021/LD0005241408_2.jpg?ex=6975f1bb&is=6974a03b&hm=5d0edc227c9dde3e514c8a608b6ed45bc5b0a7f5a830885bf06839b6369d857b&" class="platine-img" alt="LP120x">
+            <div class="platine-info">
+                <h3>Audio-Technica LP120xBT-USB</h3>
+                <p>Une platine professionnelle à entraînement direct. Idéale pour ceux qui veulent de la précision (Pitch control, contrepoids réglable) et une grande durabilité.</p>
+                <div class="price-tag">290€</div>
+            </div>
         </article>
     </div>
+</div>
+
+<script>
+    function filtrerPlatines() {
+        const max = parseInt(document.getElementById('maxPrice').value) || 9999;
+        const cards = document.querySelectorAll('.platine-card');
+
+        cards.forEach(card => {
+            const price = parseInt(card.getAttribute('data-price'));
+            if (price <= max) {
+                card.style.display = "flex";
+            } else {
+                card.style.display = "none";
+            }
+        });
+    }
+</script>
+
 </body>
 </html>
