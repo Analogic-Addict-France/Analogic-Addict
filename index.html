@@ -159,7 +159,7 @@
             if (!Array.isArray(data) || data.length === 0) return;
 
             // --- LOGIQUE DE SÉLECTION QUOTIDIENNE ---
-            const today = new Date('2026-01-25')
+            const today = new Date();
             const seed = today.getFullYear() + today.getMonth() + today.getDate();
             const index = seed % data.length; 
             
