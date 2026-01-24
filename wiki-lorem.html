@@ -30,11 +30,11 @@
             width: 100px;
         }
 
-        /* Liste des cartes */
+        /* Liste des cartes : ESSENTIEL pour le tri automatique */
         #platine-list {
             display: flex;
             flex-direction: column;
-            gap: 25px;
+            gap: 20px;
         }
 
         /* Cartes de platines */
@@ -42,16 +42,15 @@
             position: relative;
             display: flex;
             background: var(--card-bg);
-            padding: 25px;
+            padding: 20px;
             border-radius: 15px;
             gap: 20px;
             border-left: 5px solid var(--primary);
             transition: transform 0.2s;
-            box-sizing: border-box;
         }
         .platine-card:hover { transform: scale(1.01); }
 
-        /* Numéro de classement */
+        /* Numéro de classement automatique */
         .rank-badge {
             position: absolute;
             top: -12px;
@@ -66,20 +65,18 @@
             justify-content: center;
             font-weight: bold;
             box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-            z-index: 10;
+            z-index: 5;
         }
 
-        /* Gestion de l'image */
         .platine-img { 
             width: 200px; 
             height: 200px; 
             border-radius: 10px; 
-            object-fit: contain;
-            background: #fff;
+            object-fit: cover;
+            background: #fff; /* Fond blanc pour les détourages */
             padding: 5px;
         }
 
-        /* Badge Conseillé */
         .badge-conseille {
             display: inline-block;
             background-color: #6d071a;
@@ -93,28 +90,23 @@
             border: 1px solid #920a22;
         }
 
-        /* Infos de la platine */
         .platine-info { 
             flex: 1; 
             display: flex; 
             flex-direction: column; 
-            text-align: left !important;
+            text-align: left !important; 
             align-items: flex-start;
         }
 
-        .platine-info h3 { margin: 0 0 10px 0; }
-        .platine-info p { margin: 0; font-size: 0.95em; line-height: 1.6; color: #ccc; }
-        .price-tag { color: var(--primary); font-weight: bold; font-size: 1.2em; margin-top: auto; padding-top: 10px; }
+        .price-tag { color: var(--primary); font-weight: bold; font-size: 1.2em; margin-top: auto; }
 
-        @media (max-width: 768px) {
+        @media (max-width: 600px) {
             .platine-card { flex-direction: column; align-items: center; text-align: center; }
             .platine-info { text-align: center; align-items: center; }
         }
     </style>
 </head>
-<body>
-
-<div class="container">
+<body onload="ordonnerPlatines()"> <div class="container">
     <header style="margin-bottom: 30px;">
         <a href="wiki.html" style="color: var(--primary); text-decoration: none;">← Retour au Wiki</a>
         <h1 style="border-bottom: 2px solid var(--primary); padding-bottom: 10px; margin-top: 10px;">Guide d'achat : Platines Vinyles</h1>
@@ -131,10 +123,10 @@
         
         <article class="platine-card" data-price="290">
             <div class="rank-badge">2</div>
-            <img src="https://cdn.discordapp.com/attachments/1341714407968997407/1342081964534141021/LD0005241408_2.jpg?ex=6975f1bb&is=6974a03b&hm=5d0edc227c9dde3e514c8a608b6ed45bc5b0a7f5a830885bf06839b6369d857b&" class="platine-img" alt="LP120x">
+            <img src="https://cdn.discordapp.com/attachments/1341714407968997407/1342081964534141021/LD0005241408_2.jpg" class="platine-img" alt="LP120x">
             <div class="platine-info">
                 <h3>Audio-Technica LP120xBT-USB</h3>
-                <p>La référence absolue pour ce budget. Une platine professionnelle à entraînement direct. Idéale pour ceux qui veulent de la précision (Pitch control, contrepoids réglable) et une grande durabilité.</p>
+                <p>Une platine professionnelle à entraînement direct. Idéale pour ceux qui veulent de la précision et une grande durabilité.</p>
                 <div class="price-tag">290€</div>
             </div>
         </article>
@@ -144,18 +136,17 @@
             <img src="https://cdn.cultura.com/cdn-cgi/image/width=830/media/pim/0846885010167_3.png" class="platine-img" alt="Marley Stir It Up">
             <div class="platine-info">
                 <h3>House of Marley - Stir It Up</h3>
-                <p>C'est la platine écologique par excellence : fabriquée en bambou naturel et tissu recyclé. Elle offre un son chaud et un préampli intégré débrayable.</p>
+                <p>Écologique, fabriquée en bambou. Elle offre un son chaud et un préampli intégré.</p>
                 <div class="price-tag">199€</div>
             </div>
-        </div>
         </article>
 
         <article class="platine-card" data-price="130">
             <div class="rank-badge">4</div>
-            <img src="https://cdn.discordapp.com/attachments/1341714407968997407/1341873069672763545/Design-sans-titre-44.png?ex=697680ae&is=69752f2e&hm=208445df05d0ce04fec915a0c29fa78e8fd388a352016d90fb6b9455484fd75d&" class="platine-img" alt="LP60x">
+            <img src="https://cdn.discordapp.com/attachments/1341714407968997407/1341873069672763545/Design-sans-titre-44.png" class="platine-img" alt="LP60x">
             <div class="platine-info">
                 <h3>Audio-Technica LP60x</h3>
-                <p>Entièrement automatique, c'est la valeur sûre pour ceux qui ne veulent pas manipuler le bras manuellement. Le meilleur rapport simplicité/prix.</p>
+                <p>Entièrement automatique, c'est la valeur sûre pour débuter sans stress.</p>
                 <div class="price-tag">130€</div>
             </div>
         </article>
@@ -166,18 +157,17 @@
             <div class="platine-info">
                 <span class="badge-conseille">Conseillé par l'équipe d'Analogic Addict</span>
                 <h3>Thomson TT702</h3>
-                <p>Une excellente alternative petit budget. Elle dispose d'un port USB pour numériser vos vinyles et d'un design sobre qui s'intègre partout.</p>
+                <p>Excellente alternative petit budget avec port USB pour numériser vos disques.</p>
                 <div class="price-tag">169€</div>
             </div>
         </article>
 
         <article class="platine-card" data-price="60">
             <div class="rank-badge">5</div>
-            <img src="https://cdn.discordapp.com/attachments/1341714407968997407/1342084211330519050/LD0006169862.jpg?ex=6975f3d2&is=6974a252&hm=3c526e211226f26883ef781b2d3e461a60cd3f37b2e2fabc0eba9d128352cc75&" class="platine-img" alt="Platine Valise">
+            <img src="https://cdn.discordapp.com/attachments/1341714407968997407/1342084211330519050/LD0006169862.jpg" class="platine-img" alt="Platine Valise">
             <div class="platine-info">
                 <h3>Platine Valise</h3>
-                <p><strong>Avantages :</strong> Transportable, enceintes intégrées, prix imbattable.<br>
-                <strong>Inconvénients :</strong> Qualité sonore limitée, peut user les disques à long terme.</p>
+                <p>Prix imbattable, mais qualité sonore limitée. Attention à l'usure de vos disques.</p>
                 <div class="price-tag">60€</div>
             </div>
         </article>
@@ -186,17 +176,22 @@
 </div>
 
 <script>
+    // Cette fonction range les platines selon le numéro dans rank-badge
+    function ordonnerPlatines() {
+        const cards = document.querySelectorAll('.platine-card');
+        cards.forEach(card => {
+            const num = card.querySelector('.rank-badge').innerText;
+            card.style.order = num; // Le CSS s'occupe de l'affichage
+        });
+    }
+
     function filtrerPlatines() {
         const max = parseInt(document.getElementById('maxPrice').value) || 9999;
         const cards = document.querySelectorAll('.platine-card');
 
         cards.forEach(card => {
             const price = parseInt(card.getAttribute('data-price'));
-            if (price <= max) {
-                card.style.display = "flex";
-            } else {
-                card.style.display = "none";
-            }
+            card.style.display = (price <= max) ? "flex" : "none";
         });
     }
 </script>
