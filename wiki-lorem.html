@@ -30,55 +30,85 @@
             width: 100px;
         }
 
+        /* Liste des cartes */
+        #platine-list {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
         /* Cartes de platines */
         .platine-card {
+            position: relative;
             display: flex;
             background: var(--card-bg);
-            padding: 20px;
+            padding: 25px;
             border-radius: 15px;
-            margin-bottom: 20px;
             gap: 20px;
             border-left: 5px solid var(--primary);
             transition: transform 0.2s;
+            box-sizing: border-box;
         }
         .platine-card:hover { transform: scale(1.01); }
 
-        /* Gestion de l'image par lien */
+        /* Numéro de classement */
+        .rank-badge {
+            position: absolute;
+            top: -12px;
+            left: -12px;
+            background: var(--primary);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            z-index: 10;
+        }
+
+        /* Gestion de l'image */
         .platine-img { 
             width: 200px; 
             height: 200px; 
             border-radius: 10px; 
-            object-fit: cover; /* Garde les proportions même si le lien est une image rectangulaire */
-            background: #111; 
+            object-fit: contain;
+            background: #fff;
+            padding: 5px;
         }
-/* Badge Conseillé */
-.badge-conseille {
-    display: inline-block;
-    background-color: #6d071a; /* Rouge bordeaux */
-    color: white;
-    padding: 5px 12px;
-    border-radius: 5px;
-    font-size: 0.75em;
-    font-weight: bold;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-    border: 1px solid #920a22;
-}
 
-/* On s'assure que les infos de la platine restent bien à gauche */
-.platine-info { 
-    flex: 1; 
-    display: flex; 
-    flex-direction: column; 
-    text-align: left !important; /* Force l'alignement à gauche */
-    align-items: flex-start;
-}
-        .price-tag { color: var(--primary); font-weight: bold; font-size: 1.2em; margin-top: auto; }
-        .hidden { display: none; }
+        /* Badge Conseillé */
+        .badge-conseille {
+            display: inline-block;
+            background-color: #6d071a;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 5px;
+            font-size: 0.75em;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            border: 1px solid #920a22;
+        }
 
-        @media (max-width: 600px) {
+        /* Infos de la platine */
+        .platine-info { 
+            flex: 1; 
+            display: flex; 
+            flex-direction: column; 
+            text-align: left !important;
+            align-items: flex-start;
+        }
+
+        .platine-info h3 { margin: 0 0 10px 0; }
+        .platine-info p { margin: 0; font-size: 0.95em; line-height: 1.6; color: #ccc; }
+        .price-tag { color: var(--primary); font-weight: bold; font-size: 1.2em; margin-top: auto; padding-top: 10px; }
+
+        @media (max-width: 768px) {
             .platine-card { flex-direction: column; align-items: center; text-align: center; }
-            .platine-info { text-align: center; }
+            .platine-info { text-align: center; align-items: center; }
         }
     </style>
 </head>
@@ -99,7 +129,39 @@
 
     <div id="platine-list">
         
+        <article class="platine-card" data-price="290">
+            <div class="rank-badge">1</div>
+            <img src="https://cdn.discordapp.com/attachments/1341714407968997407/1342081964534141021/LD0005241408_2.jpg?ex=6975f1bb&is=6974a03b&hm=5d0edc227c9dde3e514c8a608b6ed45bc5b0a7f5a830885bf06839b6369d857b&" class="platine-img" alt="LP120x">
+            <div class="platine-info">
+                <h3>Audio-Technica LP120xBT-USB</h3>
+                <p>La référence absolue pour ce budget. Une platine professionnelle à entraînement direct. Idéale pour ceux qui veulent de la précision (Pitch control, contrepoids réglable) et une grande durabilité.</p>
+                <div class="price-tag">290€</div>
+            </div>
+        </article>
+
+        <article class="platine-card" data-price="199">
+            <div class="rank-badge">2</div>
+            <img src="https://cdn.cultura.com/cdn-cgi/image/width=830/media/pim/0846885010167_3.png" class="platine-img" alt="Marley Stir It Up">
+            <div class="platine-info">
+                <h3>House of Marley - Stir It Up</h3>
+                <p>C'est la platine écologique par excellence : fabriquée en bambou naturel et tissu recyclé. Elle offre un son chaud et un préampli intégré débrayable.</p>
+                <div class="price-tag">199€</div>
+            </div>
+        </div>
+        </article>
+
+        <article class="platine-card" data-price="130">
+            <div class="rank-badge">3</div>
+            <img src="https://cdn.discordapp.com/attachments/1341714407968997407/1341873069672763545/Design-sans-titre-44.png?ex=697680ae&is=69752f2e&hm=208445df05d0ce04fec915a0c29fa78e8fd388a352016d90fb6b9455484fd75d&" class="platine-img" alt="LP60x">
+            <div class="platine-info">
+                <h3>Audio-Technica LP60x</h3>
+                <p>Entièrement automatique, c'est la valeur sûre pour ceux qui ne veulent pas manipuler le bras manuellement. Le meilleur rapport simplicité/prix.</p>
+                <div class="price-tag">130€</div>
+            </div>
+        </article>
+
         <article class="platine-card" data-price="169">
+            <div class="rank-badge">4</div>
             <img src="https://cdn.cultura.com/cdn-cgi/image/width=1200/media/pim/10626221_7bc0ceef_2" class="platine-img" alt="Thomson TT702">
             <div class="platine-info">
                 <span class="badge-conseille">Conseillé par l'équipe d'Analogic Addict</span>
@@ -109,32 +171,8 @@
             </div>
         </article>
 
-        <article class="platine-card" data-price="250">
-            <img src="https://cdn.cultura.com/cdn-cgi/image/width=830/media/pim/0846885010167_3.png" class="platine-img" alt="Marley Stir It Up">
-            <div class="platine-info">
-                <h3>House of Marley - Stir It Up</h3>
-                <p>C'est la platine écologique par excellence : fabriquée en bambou naturel et tissu recyclé. Elle offre un son chaud et un préampli intégré débrayable.</p>
-                <div class="price-tag">199€</div>
-            </div>
-        </article>
-
-        <article class="platine-card" data-price="130">
-            <img src="https://cdn.discordapp.com/attachments/1341714407968997407/1341873069672763545/Design-sans-titre-44.png?ex=697680ae&is=69752f2e&hm=208445df05d0ce04fec915a0c29fa78e8fd388a352016d90fb6b9455484fd75d&" class="platine-img" alt="LP60x">
-            <div class="platine-info">
-                <h3>Audio-Technica LP60x</h3>
-                <p>Entièrement automatique, c'est la valeur sûre pour ceux qui ne veulent pas manipuler le bras manuellement.</p>
-                <div class="price-tag">130€</div>
-            </div>
-            <article class="platine-card" data-price="290">
-            <img src="https://cdn.discordapp.com/attachments/1341714407968997407/1342081964534141021/LD0005241408_2.jpg?ex=6975f1bb&is=6974a03b&hm=5d0edc227c9dde3e514c8a608b6ed45bc5b0a7f5a830885bf06839b6369d857b&" class="platine-img" alt="LP120x">
-            <div class="platine-info">
-                <h3>Audio-Technica LP120xBT-USB</h3>
-                <p>Une platine professionnelle à entraînement direct. Idéale pour ceux qui veulent de la précision (Pitch control, contrepoids réglable) et une grande durabilité.</p>
-                <div class="price-tag">290€</div>
-        </article>
-    </div>
-    <div id="platine-list">
         <article class="platine-card" data-price="60">
+            <div class="rank-badge">5</div>
             <img src="https://cdn.discordapp.com/attachments/1341714407968997407/1342084211330519050/LD0006169862.jpg?ex=6975f3d2&is=6974a252&hm=3c526e211226f26883ef781b2d3e461a60cd3f37b2e2fabc0eba9d128352cc75&" class="platine-img" alt="Platine Valise">
             <div class="platine-info">
                 <h3>Platine Valise</h3>
@@ -143,6 +181,7 @@
                 <div class="price-tag">60€</div>
             </div>
         </article>
+
     </div>
 </div>
 
