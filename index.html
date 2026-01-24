@@ -1,1 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Mon Univers - Accueil</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html">Accueil</a>
+        <a href="generator.html">Générateur</a>
+        <a href="wiki.html">Wiki</a>
+    </nav>
 
+    <div class="container">
+        <h1>Musique du Jour</h1>
+        <div id="music-container" class="music-card">
+            Chargement de la pépite du jour...
+        </div>
+    </div>
+
+    <script>
+        fetch('data.json')
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById('music-container');
+                container.innerHTML = `
+                    <img src="${data.image}" style="width:150px; border-radius:10px;">
+                    <div>
+                        <div style="display:flex; align-items:center; gap:10px;">
+                            <h2>${data.titre}</h2>
+                            <div class="playing-animation">
+                                <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                            </div>
+                        </div>
+                        <p><strong>Format:</strong> ${data.format} | <strong>Langue:</strong> ${data.langue}</p>
+                        <p><strong>Date:</strong> ${data.date}</p>
+                        <p><em>${data.histoire}</em></p>
+                        <a href="${data.url}" target="_blank" class="btn">Écouter sur YouTube</a>
+                    </div>
+                `;
+            });
+    </script>
+</body>
+</html>
