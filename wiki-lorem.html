@@ -1,9 +1,36 @@
-<div class="container">
-    <a href="wiki.html" style="color: var(--primary);"><-- Retour au Wiki</a>
-    <h1>Lorem Ipsum</h1>
-    <p>Cette page est un exemple de contenu pour votre wiki personnel.</p>
-    <div style="background: var(--card-bg); padding: 20px; border-radius: 10px;">
-        <h3>Origines</h3>
-        <p>Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression...</p>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wiki - Lorem Ipsum</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html">Accueil</a>
+        <a href="generator.html">Générateur</a>
+        <a href="wiki.html">Wiki</a>
+    </nav>
+
+    <div class="container">
+        <header style="margin-bottom: 40px;">
+            <a href="wiki.html" style="color: var(--primary); text-decoration: none;">← Retour au Wiki</a>
+            <h1 style="border-bottom: 2px solid var(--primary); padding-bottom: 10px;">Lorem Ipsum</h1>
+            <small>Catégorie : <strong>Exemple / Design</strong> | Dernière mise à jour : 24 Janvier 2024</small>
+        </header>
+
+        <article style="background: var(--card-bg); padding: 30px; border-radius: 15px; line-height: 1.8;">
+            <h3>Qu'est-ce que le Lorem Ipsum ?</h3>
+            <p>Le <strong>Lorem Ipsum</strong> est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500.</p>
+            
+            <blockquote style="border-left: 4px solid var(--primary); padding-left: 20px; font-style: italic; color: #ccc; margin: 20px 0;">
+                "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
+            </blockquote>
+
+            <h3>Pourquoi l'utiliser ?</h3>
+            <p>On sait depuis longtemps que travailler avec du texte lisible et contenant du sens est perturbant lorsqu'on examine le design d'une page. L'avantage du Lorem Ipsum sur un texte générique comme "Du texte ici, du texte ici" est qu'il possède une distribution de lettres plus équilibrée.</p>
+        </article>
     </div>
-</div>
+</body>
+</html>
