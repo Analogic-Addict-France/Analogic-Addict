@@ -1,24 +1,26 @@
-[{
-  "titre": "Dernier Appel",
-  "artiste": "Julie (Pietri)",
-  "album": "Disque d'or",
-  "genre": "Italo Disco",
-  "format": "Vinyle, cassette et CD",
-  "date": "1985",
-  "langue": "Français",
-  "url": "https://www.youtube.com/watch?v=Z-QfTHziXkA&list=RDZ-QfTHziXkA&start_radio=1",
-  "image": "https://i.discogs.com/HX7enBQcpIn8nz8rZLahQ-Kh-dHbxObijwzFzRlHzfo/rs:fit/g:sm/q:90/h:589/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTc3OTQy/MzctMTQ0ODkwNTI2/NS02MzY1LmpwZWc.jpeg",
-  "histoire": "Dernier Appel est la dernière musique chez carrère......."
-},
-{
-  "titre": "Ma Délivrance",
-  "artiste": "Julie (Pietri)",
-  "album": "Julie (Rare)",
-  "genre": "Italo Disco",
-  "format": "Vinyle",
-  "date": "1985",
-  "langue": "Français",
-  "url": "https://www.youtube.com/watch?v=Z-QfTHziXkA&list=RDZ-QfTHziXkA&start_radio=1",
-  "image": "https://i.discogs.com/HX7enBQcpIn8nz8rZLahQ-Kh-dHbxObijwzFzRlHzfo/rs:fit/g:sm/q:90/h:589/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTc3OTQy/MzctMTQ0ODkwNTI2/NS02MzY1LmpwZWc.jpeg",
-  "histoire": "Ma délivrance est l'avant dernière musique de julie chez carrère..."
-}]
+[
+  {
+    "titre": "Dernier Appel",
+    "artiste": "Julie (Pietri)",
+    "album": "Disque d'or",
+    "genre": "Italo Disco",
+    "format": "Vinyle, cassette et CD",
+    "date": "1985",
+    "langue": "Français",
+    "url": "https://www.youtube.com/watch?v=Z-QfTHzixkA",
+    "image": "https://i.discogs.com/HX7enBQcpIn8nz8rZlahQ-Kh-dHbXObijwFzRlhzfo/rs:fit/g:sm/q:90/h:589/w:600/czM6Ly9kaXNjb2dzLWRhdGFiYXNlLWltYWdlcy9SLTc0OTYyMTctMTQ0Mjc0OTQ0MC04ODE3LmpwZWc.jpeg",
+    "histoire": "Dernier Appel est la dernière musique chez carrère......"
+  },
+  {
+    "titre": "Ma Délivrance",
+    "artiste": "Julie (Pietri)",
+    "album": "Julie (Rare)",
+    "genre": "Italo Disco",
+    "format": "Vinyle",
+    "date": "1985",
+    "langue": "Français",
+    "url": "https://www.youtube.com/watch?v=Z-QfTHzixkA",
+    "image": "https://i.discogs.com/HX7enBQcpIn8nz8rZlahQ-Kh-dHbXObijwFzRlhzfo/rs:fit/g:sm/q:90/h:589/w:600/czM6Ly9kaXNjb2dzLWRhdGFiYXNlLWltYWdlcy9SLTc0OTYyMTctMTQ0Mjc0OTQ0MC04ODE3LmpwZWc.jpeg",
+    "histoire": "Ma délivrance est l'avant dernière musique de julie chez carrère..."
+  }
+]
