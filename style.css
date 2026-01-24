@@ -1,0 +1,79 @@
+:root {
+    --primary: #6C516C;
+    --bg: #1B1B1B;
+    --text: #f4f4f4;
+    --card-bg: #252525;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    margin: 0;
+    line-height: 1.6;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    background: rgba(0,0,0,0.3);
+}
+
+nav a { color: white; text-decoration: none; font-weight: bold; }
+nav a:hover { color: var(--primary); }
+
+.container { max-width: 900px; margin: auto; padding: 20px; }
+
+/* Animation Musique */
+.music-card {
+    background: var(--card-bg);
+    border-radius: 15px;
+    padding: 20px;
+    border-left: 5px solid var(--primary);
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.playing-animation {
+    display: flex;
+    gap: 3px;
+    height: 20px;
+    align-items: flex-end;
+}
+
+.bar {
+    width: 4px;
+    background: var(--primary);
+    animation: bounce 1s ease-in-out infinite;
+}
+
+.bar:nth-child(2) { animation-delay: 0.2s; }
+.bar:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes bounce {
+    0%, 100% { height: 5px; }
+    50% { height: 20px; }
+}
+
+.btn {
+    background: var(--primary);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    background: #333;
+    border: 1px solid var(--primary);
+    color: white;
+}
