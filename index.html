@@ -126,9 +126,10 @@
     transition: max-height 0.4s ease-out;
     overflow: hidden;
     
-    /* AJOUTEZ CES DEUX LIGNES CI-DESSOUS */
-    white-space: pre-wrap;      /* Conserve les espaces mais revient à la ligne */
-    word-wrap: break-word;     /* Force la coupure des mots trop longs */
+    /* CORRECTIONS ALIGNEMENT ET DÉBORDEMENT */
+    text-align: left;          /* Le texte commence bien à gauche */
+    white-space: pre-wrap;     /* Garde tes sauts de ligne du JSON */
+    overflow-wrap: break-word; /* Coupe les mots trop longs si besoin */
 }
 
 #music-history.expanded {
@@ -208,27 +209,28 @@
             musicData = currentMusic;
 
             document.getElementById('music-container').innerHTML = `
-                <h2 style="margin:0 0 10px 0;">${currentMusic.titre || 'Titre'} 
+                <h2 style="margin:0 0 10px 0;">${currentMusic.titre} 
                     <div class="playing-animation"><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
                 </h2>
                 <div class="music-content-wrapper">
                     <img src="${currentMusic.image}" class="music-img" alt="Pochette">
-                    <div class="music-info">
+                    <div class="music-info" style="text-align: left;">
                         <p style="color:var(--primary); font-weight:bold; margin:0;">
-                            ${currentMusic.artiste || 'Artiste'} — ${currentMusic.album || 'Album'}
+                            ${currentMusic.artiste} — ${currentMusic.album}
                         </p>
-                        <p style="font-size:0.9em; margin:10px 0; line-height: 1.5;">
-                            <strong>Genre :</strong> ${currentMusic.genre || 'Inconnu'}<br>
-                            <strong>Format :</strong> ${currentMusic.format || 'Inconnu'}<br>
-                            <strong>Langue :</strong> ${currentMusic.langue || 'Français'}<br>
-                            <strong>Sortie :</strong> ${currentMusic.date || 'Date'}
-                        </p>
+                        
+                        <div style="font-size:0.9em; margin:10px 0; line-height: 1.5;">
+                            <strong>Genre :</strong> ${currentMusic.genre}<br>
+                            <strong>Format :</strong> ${currentMusic.format}<br>
+                            <strong>Langue :</strong> ${currentMusic.langue}<br>
+                            <strong>Sortie :</strong> ${currentMusic.date}
+                        </div>
                         
                         <div class="history-wrapper">
                             <div id="music-history">
-                                ${currentMusic.histoire || 'Pas d\'histoire disponible.'}
+                                ${currentMusic.histoire}
                             </div>
-                            <button class="toggle-history" onclick="toggleHistory()" id="btn-history">Lire la suite</button>
+                            <button class="toggle-history" onclick="toggleHistory()" id="btn-history">LIRE LA SUITE</button>
                         </div>
                     </div>
                 </div>
@@ -246,29 +248,22 @@
                 ytBtn.style.padding = "14px";
                 ytBtn.style.marginBottom = "10px";
                 ytBtn.style.fontSize = "0.9em";
+                ytBtn.style.textDecoration = "none";
                 ytBtn.innerHTML = "📺 Écouter sur YouTube";
                 actionButtons.insertBefore(ytBtn, actionButtons.firstChild);
             }
         });
 
-    // Fonction pour déplier/replier
     function toggleHistory() {
         const historyDiv = document.getElementById('music-history');
         const btn = document.getElementById('btn-history');
-        
         if (historyDiv.classList.contains('expanded')) {
             historyDiv.classList.remove('expanded');
-            btn.innerText = "Lire la suite";
+            btn.innerText = "LIRE LA SUITE";
         } else {
             historyDiv.classList.add('expanded');
-            btn.innerText = "Réduire";
+            btn.innerText = "RÉDUIRE";
         }
-    }
-
-    function copyDiscordFormat() {
-        if (!musicData.titre) return;
-        const text = `<@&1342094598822166588> \n\n# MUSIQUE DU JOUR\n- **Titre** : ${musicData.titre}\n- **Artiste** : ${musicData.artiste}\n- **Lien** : ${musicData.url}`;
-        navigator.clipboard.writeText(text).then(() => alert("Format Discord copié !"));
     }
 </script>
 </body>
