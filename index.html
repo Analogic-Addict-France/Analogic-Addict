@@ -122,9 +122,13 @@
     padding: 12px;
     font-size: 0.85em;
     line-height: 1.4;
-    max-height: 80px; /* Hauteur quand c'est replié */
+    max-height: 80px; 
     transition: max-height 0.4s ease-out;
     overflow: hidden;
+    
+    /* AJOUTEZ CES DEUX LIGNES CI-DESSOUS */
+    white-space: pre-wrap;      /* Conserve les espaces mais revient à la ligne */
+    word-wrap: break-word;     /* Force la coupure des mots trop longs */
 }
 
 #music-history.expanded {
