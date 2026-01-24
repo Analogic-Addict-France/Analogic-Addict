@@ -2,51 +2,89 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Mon Univers - Accueil</title>
+    <title>Analogic Addict France - Accueil</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <nav>
     <div class="nav-container">
-        <a href="index.html" class="logo">
-            <img src="img/logo.png" alt="Logo">
-        </a>
-
+        <a href="index.html" class="logo"><img src="img/logo.png" alt="Logo"></a>
         <div class="nav-links">
             <a href="index.html">Accueil</a>
+            <a href="generator.html">Générateur</a>
             <a href="wiki.html">Wiki</a>
         </div>
     </div>
 </nav>
 
-    <div class="container">
-        <h1>Musique du Jour</h1>
-        <div id="music-container" class="music-card">
-            Chargement de la pépite du jour...
+<audio id="bg-audio" loop>
+    <source src="musique-ambiance.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container">
+    <a href="wiki.html" class="wiki-btn">
+        <span>Explorer la base de connaissances</span>
+        <span>Aller sur le wiki →</span>
+    </a>
+
+    <div class="home-grid">
+        <div id="music-section">
+            <div id="music-container" class="music-card">
+                </div>
+            <button class="btn" onclick="copyDiscordFormat()" style="margin-top:15px; width:100%; background:#444;">
+                📋 Copier le format Discord
+            </button>
+        </div>
+
+        <div class="discord-widget">
+            <iframe src="https://discord.com/widget?id=1183880368173096983&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
         </div>
     </div>
+</div>
 
-    <script>
-        fetch('data.json')
-            .then(response => response.json())
-            .then(data => {
-                const container = document.getElementById('music-container');
-                container.innerHTML = `
-                    <img src="${data.image}" style="width:150px; border-radius:10px;">
-                    <div>
-                        <div style="display:flex; align-items:center; gap:10px;">
-                            <h2>${data.titre}</h2>
-                            <div class="playing-animation">
-                                <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-                            </div>
-                        </div>
-                        <p><strong>Format:</strong> ${data.format} | <strong>Langue:</strong> ${data.langue}</p>
-                        <p><strong>Date:</strong> ${data.date}</p>
-                        <p><em>${data.histoire}</em></p>
-                        <a href="${data.url}" target="_blank" class="btn">Écouter sur YouTube</a>
-                    </div>
-                `;
-            });
-    </script>
+<script>
+    // Audio avec fondu
+    const audio = document.getElementById('bg-audio');
+    audio.volume = 0;
+    
+    window.addEventListener('mouseover', () => { // Déclenche au premier mouvement car les navigateurs bloquent l'auto-play pur
+        if(audio.paused) {
+            audio.play();
+            fadeIn(audio);
+        }
+    }, {once: true});
+
+    function fadeIn(elem) {
+        let vol = 0;
+        let interval = setInterval(() => {
+            if (vol < 0.15) { // Volume max 15% pour rester discret
+                vol += 0.01;
+                elem.volume = vol;
+            } else { clearInterval(interval); }
+        }, 200);
+    }
+
+    let musicData = {};
+
+    fetch('data.json')
+        .then(r => r.json())
+        .then(data => {
+            musicData = data;
+            document.getElementById('music-container').innerHTML = `
+                <img src="${data.image}" style="width:100%; max-height:300px; object-fit:cover; border-radius:10px;">
+                <h2>${data.titre}</h2>
+                <div class="playing-animation"><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
+                <p><strong>Artiste:</strong> ${data.artiste} | <strong>Album:</strong> ${data.album}</p>
+                <p><strong>Genre:</strong> ${data.genre}</p>
+                <a href="${data.url}" target="_blank" class="btn">Écouter sur YouTube</a>
+            `;
+        });
+
+    function copyDiscordFormat() {
+        const text = `<@&1342094598822166588> \n\n# VOICI LA MUSIQUE DU DEMI MOIS !!\n\n- **Titre** : ${musicData.titre}\n- **Artiste** : ${musicData.artiste}\n- **Date de sortie** : ${musicData.date}\n- **Album** : ${musicData.album}\n- **Genre** : ${musicData.genre}\n- **Support existant** : ${musicData.format}\n- **Langue** : ${musicData.langue}\n\n## Histoire :\n- ${musicData.histoire}\n\n## Liens streaming :\n[Youtube](${musicData.url})`;
+        navigator.clipboard.writeText(text);
+        alert("Format copié pour Discord !");
+    }
+</script>
 </body>
 </html>
