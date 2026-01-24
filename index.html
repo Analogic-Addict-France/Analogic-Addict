@@ -158,53 +158,45 @@
     fetch('data.json')
         .then(r => r.json())
         .then(data => {
-            musicData = data;
+            if (!Array.isArray(data) || data.length === 0) return;
+
+            // --- LOGIQUE DE SÉLECTION QUOTIDIENNE ---
+            const today = new Date();
+            // On utilise l'année, le mois et le jour pour créer un index stable sur 24h
+            const seed = today.getFullYear() + today.getMonth() + today.getDate();
+            const index = seed % data.length; 
+            
+            const currentMusic = data[index]; 
+            musicData = currentMusic;
+
+            // --- MISE À JOUR DE L'INTERFACE ---
             document.getElementById('music-container').innerHTML = `
-                <h2 style="margin:0 0 10px 0;">${data.titre || 'Titre'} 
+                <h2 style="margin:0 0 10px 0;">${currentMusic.titre || 'Titre'} 
                     <div class="playing-animation"><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
                 </h2>
                 <div class="music-content-wrapper">
-                    <img src="${data.image}" class="music-img">
+                    <img src="${currentMusic.image}" class="music-img" alt="Pochette">
                     <div class="music-info">
-                        <p style="color:var(--primary); font-weight:bold; margin:0;">${data.artiste || 'Artiste'} — ${data.album || 'Album'}</p>
+                        <p style="color:var(--primary); font-weight:bold; margin:0;">${currentMusic.artiste || 'Artiste'} — ${currentMusic.album || 'Album'}</p>
                         <p style="font-size:0.9em; margin:10px 0;">
-                            <strong>Genre :</strong> ${data.genre || 'Inconnu'}<br>
-                            <strong>Langue :</strong> ${data.langue || 'Français'}<br>
-                            <strong>Sortie :</strong> ${data.date || 'Date'}
+                            <strong>Genre :</strong> ${currentMusic.genre || 'Inconnu'}<br>
+                            <strong>Langue :</strong> ${currentMusic.langue || 'Français'}<br>
+                            <strong>Sortie :</strong> ${currentMusic.date || 'Date'}
                         </p>
                         <div style="background:rgba(0,0,0,0.2); padding:12px; border-radius:8px; font-size:0.85em; border: 1px solid rgba(255,255,255,0.05);">
-                            ${data.histoire || 'Pas d\'histoire disponible.'}
+                            ${currentMusic.histoire || 'Pas d\'histoire disponible.'}
                         </div>
                     </div>
                 </div>
             `;
-            const vId = data.url?.split('v=')[1]?.split('&')[0];
-            if(vId) initYouTubeAPI(vId);
-        });
+        })
+        .catch(err => console.error("Erreur de chargement du JSON :", err));
 
-    function initYouTubeAPI(vId) {
-        const tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        document.head.appendChild(tag);
-        window.onYouTubeIframeAPIReady = () => {
-            new YT.Player('youtube-player', {
-                height: '0', width: '0', videoId: vId,
-                playerVars: { 'autoplay': 1, 'loop': 1, 'playlist': vId },
-                events: { 'onReady': (e) => {
-                    e.target.setVolume(0);
-                    document.body.addEventListener('click', () => {
-                        e.target.playVideo();
-                        let v = 0;
-                        let i = setInterval(() => { if(v<20){v++; e.target.setVolume(v);} else clearInterval(i); }, 150);
-                    }, {once:true});
-                }}
-            });
-        };
-    }
-
+    // Fonction de copie pour Discord (toujours active)
     function copyDiscordFormat() {
+        if (!musicData.titre) return;
         const text = `<@&1342094598822166588> \n\n# MUSIQUE DU JOUR\n- **Titre** : ${musicData.titre}\n- **Artiste** : ${musicData.artiste}\n- **Lien** : ${musicData.url}`;
-        navigator.clipboard.writeText(text).then(() => alert("Copié !"));
+        navigator.clipboard.writeText(text).then(() => alert("Format Discord copié !"));
     }
 </script>
 </body>
