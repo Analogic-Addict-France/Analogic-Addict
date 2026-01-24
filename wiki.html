@@ -1,23 +1,79 @@
-<div class="container">
-    <h1>Wiki</h1>
-    <input type="text" id="search" onkeyup="filterWiki()" placeholder="Chercher une page ou catégorie...">
-    
-    <ul id="wikiList" style="list-style: none; padding: 0;">
-        <li style="margin-bottom: 10px;">
-            <a href="wiki-lorem.html" class="btn" style="width: 100%; background: #252525;">
-                Lorem Ipsum <span style="font-size: 0.8em; color: var(--primary);">[Exemple]</span>
-            </a>
-        </li>
-    </ul>
-</div>
-
-<script>
-    function filterWiki() {
-        let input = document.getElementById('search').value.toLowerCase();
-        let items = document.getElementById('wikiList').getElementsByTagName('li');
-        for (let i = 0; i < items.length; i++) {
-            let txt = items[i].textContent || items[i].innerText;
-            items[i].style.display = txt.toLowerCase().includes(input) ? "" : "none";
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wiki - Archives</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .wiki-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
         }
-    }
-</script>
+        .wiki-item {
+            background: var(--card-bg);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #333;
+            transition: 0.3s;
+            text-decoration: none;
+            color: var(--text);
+            display: block;
+        }
+        .wiki-item:hover {
+            border-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        .category-tag {
+            font-size: 0.7em;
+            text-transform: uppercase;
+            color: var(--primary);
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Accueil</a>
+        <a href="generator.html">Générateur</a>
+        <a href="wiki.html" style="border-bottom: 2px solid var(--primary);">Wiki</a>
+    </nav>
+
+    <div class="container">
+        <h1>📚 Wiki & Ressources</h1>
+        <p>Recherchez à travers les différentes catégories et pages.</p>
+        
+        <input type="text" id="wikiSearch" onkeyup="filterWiki()" placeholder="🔍 Rechercher un titre, un tag ou un sujet...">
+
+        <div class="wiki-grid" id="wikiList">
+            <a href="wiki-lorem.html" class="wiki-item">
+                <span class="category-tag">Exemple / Design</span>
+                <strong>Lorem Ipsum</strong>
+                <p style="font-size: 0.9em; color: #bbb;">Comprendre l'origine du faux-texte.</p>
+            </a>
+
+            <div class="wiki-item" style="opacity: 0.5;">
+                <span class="category-tag">Musique</span>
+                <strong>Théorie des Gammes</strong>
+                <p style="font-size: 0.9em; color: #bbb;">Bientôt disponible...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function filterWiki() {
+            let input = document.getElementById('wikiSearch').value.toLowerCase();
+            let items = document.querySelectorAll('.wiki-item');
+            
+            items.forEach(item => {
+                let text = item.innerText.toLowerCase();
+                item.style.display = text.includes(input) ? "block" : "none";
+            });
+        }
+    </script>
+</body>
+</html>
