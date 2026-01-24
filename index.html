@@ -174,25 +174,41 @@
                 <div class="music-content-wrapper">
                     <img src="${currentMusic.image}" class="music-img" alt="Pochette">
                     <div class="music-info">
-                        <p style="color:var(--primary); font-weight:bold; margin:0;">${currentMusic.artiste || 'Artiste'} — ${currentMusic.album || 'Album'}</p>
-                        <p style="font-size:0.9em; margin:10px 0;">
+                        <p style="color:var(--primary); font-weight:bold; margin:0;">
+                            ${currentMusic.artiste || 'Artiste'} — ${currentMusic.album || 'Album'}
+                        </p>
+                        <p style="font-size:0.9em; margin:10px 0; line-height: 1.5;">
                             <strong>Genre :</strong> ${currentMusic.genre || 'Inconnu'}<br>
+                            <strong>Format :</strong> ${currentMusic.format || 'Inconnu'}<br>
                             <strong>Langue :</strong> ${currentMusic.langue || 'Français'}<br>
                             <strong>Sortie :</strong> ${currentMusic.date || 'Date'}
                         </p>
-                        <div style="background:rgba(0,0,0,0.2); padding:12px; border-radius:8px; font-size:0.85em; border: 1px solid rgba(255,255,255,0.05);">
+                        <div style="background:rgba(0,0,0,0.2); padding:12px; border-radius:8px; font-size:0.85em; border: 1px solid rgba(255,255,255,0.05); line-height: 1.4;">
                             ${currentMusic.histoire || 'Pas d\'histoire disponible.'}
                         </div>
                     </div>
                 </div>
             `;
+
+            // Ajout dynamique du lien YouTube sur le bouton existant s'il y en a un
+            const ytBtn = document.createElement('a');
+            ytBtn.href = currentMusic.url;
+            ytBtn.target = "_blank";
+            ytBtn.className = "btn btn-copy"; // On réutilise le style gris ou crée un style rouge
+            ytBtn.style.backgroundColor = "#cc0000";
+            ytBtn.style.color = "white";
+            ytBtn.style.marginBottom = "10px";
+            ytBtn.innerHTML = "📺 Écouter sur YouTube";
+            
+            const actionButtons = document.querySelector('.action-buttons');
+            actionButtons.insertBefore(ytBtn, actionButtons.firstChild);
         })
         .catch(err => console.error("Erreur de chargement :", err));
 
     function copyDiscordFormat() {
         if (!musicData.titre) return;
         const text = `<@&1342094598822166588> \n\n# MUSIQUE DU JOUR\n- **Titre** : ${musicData.titre}\n- **Artiste** : ${musicData.artiste}\n- **Lien** : ${musicData.url}`;
-        navigator.clipboard.writeText(text).then(() => alert("Copié !"));
+        navigator.clipboard.writeText(text).then(() => alert("Format Discord copié !"));
     }
 </script>
 </body>
