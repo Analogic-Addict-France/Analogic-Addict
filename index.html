@@ -162,7 +162,6 @@
 
             // --- LOGIQUE DE SÉLECTION QUOTIDIENNE ---
             const today = new Date();
-            // On utilise l'année, le mois et le jour pour créer un index stable sur 24h
             const seed = today.getFullYear() + today.getMonth() + today.getDate();
             const index = seed % data.length; 
             
@@ -170,12 +169,15 @@
             musicData = currentMusic;
 
             // --- MISE À JOUR DE L'INTERFACE ---
+            // Note : on vérifie que currentMusic.image existe bien
+            const imageUrl = currentMusic.image || 'img/default.png';
+
             document.getElementById('music-container').innerHTML = `
                 <h2 style="margin:0 0 10px 0;">${currentMusic.titre || 'Titre'} 
                     <div class="playing-animation"><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
                 </h2>
                 <div class="music-content-wrapper">
-                    <img src="${currentMusic.image}" class="music-img" alt="Pochette">
+                    <img src="${imageUrl}" class="music-img" style="display: block !important;">
                     <div class="music-info">
                         <p style="color:var(--primary); font-weight:bold; margin:0;">${currentMusic.artiste || 'Artiste'} — ${currentMusic.album || 'Album'}</p>
                         <p style="font-size:0.9em; margin:10px 0;">
@@ -190,9 +192,8 @@
                 </div>
             `;
         })
-        .catch(err => console.error("Erreur de chargement du JSON :", err));
+        .catch(err => console.error("Erreur :", err));
 
-    // Fonction de copie pour Discord (toujours active)
     function copyDiscordFormat() {
         if (!musicData.titre) return;
         const text = `<@&1342094598822166588> \n\n# MUSIQUE DU JOUR\n- **Titre** : ${musicData.titre}\n- **Artiste** : ${musicData.artiste}\n- **Lien** : ${musicData.url}`;
