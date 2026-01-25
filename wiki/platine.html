@@ -183,13 +183,13 @@ function applyFilters() {
         return { ...p, score };
     });
 
-    // Tri par score de critères
+    // Tri par score (pertinence des mots-clés)
     scored.sort((a, b) => b.score - a.score);
 
     list.innerHTML = scored.map(p => {
         const isVisible = p.price <= maxPrice ? 'flex' : 'none';
         
-        // Vérification automatique du tag Conseillé et du Bluetooth
+        // Affiche le tag si "conseille": true dans le JSON
         const tagConseille = p.conseille ? `<span class="badge-conseille">Conseillé par l'équipe d'Analogic Addict France</span>` : '';
 
         return `
@@ -201,7 +201,7 @@ function applyFilters() {
                 <h3>${p.name}</h3>
                 <h4>${p.type}</h4>
                 <p><strong>Avantages :</strong> ${p.avantages}</p>
-                
+                <p><strong>Inconvénients :</strong> ${p.inconvenients}</p>
 
                 <div class="price-tag">${p.price}€</div>
             </div>
