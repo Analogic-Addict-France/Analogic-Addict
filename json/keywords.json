@@ -29,4 +29,6 @@
   "ampli": "Appareil central servant à amplifier le signal sonore pour alimenter des enceintes.",
   "passive": "Enceinte nécessitant un amplificateur externe pour fonctionner.",
   "bibliothèques": "Format d'enceintes compactes conçues pour être posées sur un meuble ou une étagère."
+    "fm": "Permet d'écouter les stations de radio classiques via les ondes FM.",
+  "100w": "Indique une puissance de sortie élevée, capable de sonoriser une grande pièce.",
 }
