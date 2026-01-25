@@ -20,6 +20,14 @@
             border-left: 5px solid var(--primary);
             transition: transform 0.2s;
             margin-bottom: 20px;
+            text-decoration: none; /* Enlève le soulignement du lien */
+            color: inherit; /* Garde la couleur du texte */
+        }
+
+        /* Effet au survol car c'est maintenant un lien */
+        .platine-card:hover {
+            transform: scale(1.02);
+            background: rgba(255, 255, 255, 0.05);
         }
 
         .platine-img { 
@@ -52,7 +60,6 @@
             border: 1px solid #920a22;
         }
 
-        /* Badge Spécial Partenaire */
         .badge-partenaire {
             background-color: #1e4620; /* Vert foncé */
             border: 1px solid #2e7d32;
@@ -114,7 +121,7 @@
 
     <div id="wiki-content">
         
-        <article class="platine-card">
+        <a href="https://yado-vinyl.fr" target="_blank" class="platine-card">
             <img src="https://www.pagesjaunes.fr/media/newdam/preset-thumbnail-logo-desktop/0a/79/2f/00/00/40/c3/f5/3b/94/67910a792f000040c3f53b94/67910a792f000040c3f53b95.png" class="platine-img" alt="Yado Vinyl">
             
             <div class="platine-info">
@@ -127,9 +134,9 @@
                 </p>
                 <div class="promo-tag">Code -10% : Pandaa2026</div>
             </div>
-        </article>
+        </a>
 
-        <article class="platine-card">
+        <a href="https://standgroove.com" target="_blank" class="platine-card">
             <img src="https://media.discordapp.net/attachments/1309126147753377822/1464958501142134795/Sans_titre_110_20260125132054.png?ex=69775c6c&is=69760aec&hm=c3f3064bc559f85bf0e7a2672224c02117328b70a83b9c7b59af51ed0af13ccd&=&format=webp&quality=lossless&width=960&height=960" class="platine-img" alt="Stand Groove">
             
             <div class="platine-info">
@@ -142,7 +149,7 @@
                 </p>
                 <div class="promo-tag">Code -10% : Pandaa2026</div>
             </div>
-        </article>
+        </a>
 
     </div>
 
