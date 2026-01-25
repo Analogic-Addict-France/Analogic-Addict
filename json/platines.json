@@ -1,6 +1,6 @@
 [
     {
-        "name": "Audio-Technica LP120xBT-USB",
+        "name": "Audio-Technica LP120x",
         "type": "Manuelle",
         "price": 290,
         "image": "https://cdn.discordapp.com/attachments/1341714407968997407/1342081964534141021/LD0005241408_2.jpg?ex=6977433b&is=6975f1bb&hm=610f9fb4f6a60c1308a3cc15ff9dbc6008f6dd0c5367eeed1666ff2425767115&",
@@ -36,6 +36,15 @@
         "keywords": "auto-stop, usb, bluetooth, préampli, sortie casque, entrainement courroie",
         "avantages": "Bon rapport qualité-prix, sortie casque sur l'avant, préampli et sortie USB intégré...",
         "inconvenients": "Couvercle non fournis, pas d'auto-return."
+    },
+        {
+        "name": "Audio Technica LP60x",
+        "type": "Automatique",
+        "price": 130,
+        "image": "https://cdn.discordapp.com/attachments/1341714407968997407/1341873069672763545/Design-sans-titre-44.png?ex=6977296e&is=6975d7ee&hm=310bec5f07016aebe05fa3d4427a5f9a34898a30a4ef0ad88c1424cca2339c95&",
+        "keywords": "automatique, usb, bluetooth, préampli, entrainement courroie",
+        "avantages": "Platine facile à installer et a utiliser.",
+        "inconvenients": "Cellule non changeable et contrepoids non réglable, pas de poste (visse) ground pour le mode phono."
     },
     {
         "name": "Platine Valise",
