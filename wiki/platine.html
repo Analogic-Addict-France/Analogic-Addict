@@ -7,260 +7,201 @@
     <link rel="icon" type="image/png" href="../img/logo.png">
     <link rel="stylesheet" href="../style.css">
     <style>
-        .discord-cta {
-    margin-top: 50px;
-    padding: 30px;
-    background: #1e1f22; /* Couleur fond sombre Discord */
-    border-radius: 15px;
-    text-align: center;
-    border: 1px dashed #5865F2; /* Bordure en pointillés couleur Discord */
-}
-
-.discord-cta p {
-    margin-bottom: 20px;
-    font-size: 1.1em;
-    color: #fff;
-    font-weight: bold;
-}
-
-.discord-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background-color: #5865F2; /* Couleur Blurple Discord */
-    color: white;
-    padding: 12px 25px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: background-color 0.3s, transform 0.2s;
-}
-
-.discord-btn:hover {
-    background-color: #4752c4;
-    transform: translateY(-2px);
-}
-
-.discord-btn img {
-    width: 24px;
-    height: 24px;
-}
-        /* Conteneur principal */
         .container { max-width: 1100px; margin: auto; padding: 20px; }
-
-        /* Barre de filtrage */
+        
+        /* Section Filtres */
         .filter-section {
             background: var(--card-bg);
             padding: 20px;
             border-radius: 15px;
-            margin-bottom: 30px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            align-items: center;
+            margin-bottom: 20px;
             border: 1px solid var(--primary);
         }
-        .filter-section input {
+
+        .kw-container {
+            display: none; /* Caché par défaut */
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #444;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .kw-btn {
             background: #1b1b1b;
             border: 1px solid #444;
+            color: #aaa;
+            padding: 6px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85em;
+            transition: 0.2s;
+            user-select: none;
+        }
+
+        .kw-btn.active {
+            background: var(--primary);
             color: white;
-            padding: 10px;
-            border-radius: 8px;
-            width: 100px;
+            border-color: var(--primary);
         }
 
-        /* Liste des cartes : ESSENTIEL pour le tri automatique */
-        #platine-list {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
+        .kw-btn:hover { border-color: var(--primary); }
 
-        /* Cartes de platines */
+        /* Style des cartes */
+        #platine-list { display: flex; flex-direction: column; gap: 20px; }
         .platine-card {
-            position: relative;
             display: flex;
             background: var(--card-bg);
             padding: 20px;
             border-radius: 15px;
             gap: 20px;
             border-left: 5px solid var(--primary);
-            transition: transform 0.2s;
+            transition: 0.3s ease;
         }
-        .platine-card:hover { transform: scale(1.01); }
-
-        /* Numéro de classement automatique */
-        .rank-badge {
-            position: absolute;
-            top: -12px;
-            left: -12px;
-            background: var(--primary);
-            color: white;
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-            z-index: 5;
-        }
-
-        .platine-img { 
-            width: 200px; 
-            height: 200px; 
-            border-radius: 10px; 
-            object-fit: cover;
-            background: #fff; /* Fond blanc pour les détourages */
-            padding: 5px;
-        }
-
-        .badge-conseille {
-            display: inline-block;
-            background-color: #6d071a;
-            color: white;
-            padding: 5px 12px;
-            border-radius: 5px;
-            font-size: 0.75em;
-            font-weight: bold;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-            border: 1px solid #920a22;
-        }
-
-        .platine-info { 
-            flex: 1; 
-            display: flex; 
-            flex-direction: column; 
-            text-align: left !important; 
-            align-items: flex-start;
-        }
-
-        .price-tag { color: var(--primary); font-weight: bold; font-size: 1.2em; margin-top: auto; }
+        .platine-img { width: 180px; height: 180px; border-radius: 10px; object-fit: contain; background: #fff; padding: 5px; }
+        .platine-info { flex: 1; display: flex; flex-direction: column; align-items: flex-start; text-align: left; }
+        .price-tag { color: var(--primary); font-weight: bold; font-size: 1.2em; margin-top: 10px; }
+        .match-badge { font-size: 0.8em; color: #4CAF50; font-weight: bold; margin-bottom: 5px; }
 
         @media (max-width: 600px) {
             .platine-card { flex-direction: column; align-items: center; text-align: center; }
-            .platine-info { text-align: center; align-items: center; }
+            .platine-info { align-items: center; text-align: center; }
         }
     </style>
 </head>
-<body onload="ordonnerPlatines()"> <div class="container">
+<body>
+
+<div class="container">
     <header style="margin-bottom: 30px;">
         <a href="../wiki.html" style="color: var(--primary); text-decoration: none;">← Retour au Wiki</a>
-        <h1 style="border-bottom: 2px solid var(--primary); padding-bottom: 10px; margin-top: 10px;">Guide d'achat : Platines Vinyles</h1>
+        <h1>Guide d'achat : Platines Vinyles</h1>
     </header>
 
     <div class="filter-section">
-        <span>Budget max :</span>
-        <input type="number" id="maxPrice" placeholder="Ex: 200" value="200">
-        <span>€</span>
-        <button onclick="filtrerPlatines()" style="background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold;">Appliquer</button>
-    </div>
-<div class="discord-cta">
-    <p>Besoin d'un conseil personnalisé et accompagné ?</p>
-    <a href="https://discord.gg/dsN6a7bPPY" target="_blank" class="discord-btn">
-        <img src="https://cdn-icons-png.flaticon.com/256/6422/6422197.png" alt="Discord Icon">
-        Rejoins le Discord !
-    </a>
-</div>
-    <div id="platine-list">
+        <div style="display: flex; align-items: center; gap: 15px; flex-wrap: wrap;">
+            <span>Budget max :</span>
+            <input type="number" id="maxPrice" value="400" style="background:#1b1b1b; color:white; border:1px solid #444; padding:8px; border-radius:8px; width:80px;">
+            <span>€</span>
+            <button onclick="toggleFilters()" id="mainFilterBtn" style="background: var(--primary); color: white; border: none; padding: 8px 15px; border-radius: 8px; cursor: pointer; font-weight: bold;">
+                Filtres avancés ▼
+            </button>
+        </div>
         
-        <article class="platine-card" data-price="290">
-            <div class="rank-badge">2</div>
-            <img src="https://media.discordapp.net/attachments/1341714407968997407/1342081964534141021/LD0005241408_2.jpg?ex=6975f1bb&is=6974a03b&hm=5d0edc227c9dde3e514c8a608b6ed45bc5b0a7f5a830885bf06839b6369d857b&=&format=webp&width=921&height=921" class="platine-img" alt="LP120x">
-            <div class="platine-info">
-                <h3>Audio-Technica LP120xBT-USB</h3>
-                <h4>Manuelle</h4>
-<p><strong>Avantages :</strong> Platine semi-professionelle, préampli intégré, vitesse 78t disponible, entraînement direct, réglage pitch, lumière enlevable et réglage pitch. La cellule est interchangeable, le contrepoids régable et la base aussi. Un modèle USB et Bluetooth sont aussi disponibles.<br>
-                <strong>Inconvénients :</strong> Assez compliqué à installer, platine manuelle.</p>
-                <div class="price-tag">290€</div>
+        <div id="kw-wrapper" class="kw-container" style="display: none;">
             </div>
-        </article>
-
-        <article class="platine-card" data-price="199">
-            <div class="rank-badge">4</div>
-            <img src="https://cdn.cultura.com/cdn-cgi/image/width=830/media/pim/0846885010167_3.png" class="platine-img" alt="Marley Stir It Up">
-            <div class="platine-info">
-                <h3>House of Marley - Stir It Up</h3>
-                <h4>Auto-stop</h4>
-                <p><strong>Avantages :</strong> Bon rapport qualité-prix, sortie casque sur l'avant, préampli et sortie USB intégré, réglage pitch et version bluetooth disponible.<br>
-                <strong>Inconvénients :</strong> Couvercle non fournis (50 euro appart), un peu compliqué à installer, pas d'auto-return (le bras reviens à son emplacement de pause).</p>
-                <div class="price-tag">199€</div>
-            </div>
-        </article>
-
-        <article class="platine-card" data-price="130">
-            <div class="rank-badge">5</div>
-            <img src="https://media.discordapp.net/attachments/1341714407968997407/1341873069672763545/Design-sans-titre-44.png?ex=697680ae&is=69752f2e&hm=208445df05d0ce04fec915a0c29fa78e8fd388a352016d90fb6b9455484fd75d&=&format=webp&quality=lossless&width=921&height=921" class="platine-img" alt="LP60x">
-            <div class="platine-info">
-                <h3>Audio-Technica LP60x</h3>
-                <h4>Automatique</h4>
-                <p><strong>Avantages :</strong> Facile à installer et a utilisé, préampli intégré. Version bluetooth et USB disponible.<br>
-                <strong>Inconvénients :</strong> Contrepoids non réglable et cellule non interchangeable. Pas de poste ground pour le mode phono.</p>
-                <div class="price-tag">130€</div>
-            </div>
-        </article>
-
-        <article class="platine-card" data-price="169">
-            <div class="rank-badge">1</div>
-            <img src="https://cdn.cultura.com/cdn-cgi/image/width=1200/media/pim/10626221_7bc0ceef_2" class="platine-img" alt="Thomson TT702">
-            <div class="platine-info">
-                <span class="badge-conseille">Conseillé par l'équipe d'Analogic Addict</span>
-                <h3>Thomson TT702</h3>
-                <h4>Automatique</h4>
-                <p><strong>Avantages :</strong> Meilleur rapport qualité-prix, réglage pitch, contrepoids réglable avec cellule changeable. Contient des fonctions comme l'usb et un préampli intégré.<br>
-                    <strong>Inconvénients :</strong> Assez grande et assez difficile à mettre en place (aide possible sur le serveur Discord)</p>
-                <div class="price-tag">169€</div>
-            </div>
-        </article>
-                <article class="platine-card" data-price="169">
-            <div class="rank-badge">3</div>
-            <img src="https://media.rueducommerce.fr/mktp/product/productImage/3/26/0393007406214e9db51714651037d0ec.webp" class="platine-img" alt="Thomson TT702">
-            <div class="platine-info">
-                <span class="badge-conseille">Conseillé par l'équipe d'Analogic Addict</span>
-                <h3>Thomson TT700</h3>
-                <h4>Automatique</h4>
-                <p><strong>Avantages :</strong> Meilleur rapport qualité-prix, réglage pitch, contrepoids réglable avec cellule changeable. Contient des fonctions comme l'usb et un préampli intégré.<br>
-                    <strong>Inconvénients :</strong> Assez grande, assez difficile à mettre en place (aide possible sur le serveur Discord), moins jolie esthétiquement que la TT702</p>
-                <div class="price-tag">159€</div>
-            </div>
-        </article>
-
-        <article class="platine-card" data-price="60">
-            <div class="rank-badge">6</div>
-            <img src="https://cdn.discordapp.com/attachments/1341714407968997407/1342084211330519050/LD0006169862.jpg?ex=6975f3d2&is=6974a252&hm=3c526e211226f26883ef781b2d3e461a60cd3f37b2e2fabc0eba9d128352cc75&" class="platine-img" alt="Platine Valise">
-            <div class="platine-info">
-                <h3>Platine Valise</h3>
-                <h4>Auto-stop</h4>
-                <p><strong>Avantages :</strong> Transportable, enceintes intégrées, prix imbattable. Parfait pour écouter des vieux disques<br>
-                <strong>Inconvénients :</strong> Qualité de fabrication et sonore limitée, abîme les disques au long terme. La majorité des vinyles après les années 2000 sautent dessus car ils ne possèdent pas de filtre de basse, qui sont obligatoire pour ces platines.</p>
-                <div class="price-tag">60€</div>
-            </div>
-        </article>
-
+        <p style="font-size: 0.7em; color: #666; margin-top: 10px;">* Cliquez pour filtrer, restez appuyé pour la description.</p>
     </div>
+
+    <div id="platine-list">
+        </div>
 </div>
 
 <script>
-    // Cette fonction range les platines selon le numéro dans rank-badge
-    function ordonnerPlatines() {
-        const cards = document.querySelectorAll('.platine-card');
-        cards.forEach(card => {
-            const num = card.querySelector('.rank-badge').innerText;
-            card.style.order = num; // Le CSS s'occupe de l'affichage
-        });
+    let dataPlatines = [];
+    let dataKeywords = {};
+    let selectedKeywords = new Set();
+
+    async function init() {
+        try {
+            const [resP, resK] = await Promise.all([
+                fetch('../json/platines.json'),
+                fetch('../json/keywords.json')
+            ]);
+            dataPlatines = await resP.json();
+            dataKeywords = await resK.json();
+            
+            renderKeywords();
+            applyFilters();
+        } catch (e) { console.error("Erreur chargement JSON", e); }
     }
 
-    function filtrerPlatines() {
-        const max = parseInt(document.getElementById('maxPrice').value) || 9999;
-        const cards = document.querySelectorAll('.platine-card');
-
-        cards.forEach(card => {
-            const price = parseInt(card.getAttribute('data-price'));
-            card.style.display = (price <= max) ? "flex" : "none";
+    function renderKeywords() {
+        const wrapper = document.getElementById('kw-wrapper');
+        const allKeywords = {};
+        
+        // Compter les platines par keyword
+        dataPlatines.forEach(p => {
+            p.keywords.split(',').forEach(k => {
+                const cleanK = k.trim().toLowerCase();
+                allKeywords[cleanK] = (allKeywords[cleanK] || 0) + 1;
+            });
         });
+
+        wrapper.innerHTML = Object.keys(allKeywords).map(kw => {
+            return `<div class="kw-btn" 
+                id="btn-${kw}"
+                onclick="toggleKeyword('${kw}')"
+                onmousedown="startPress('${kw}')" 
+                onmouseup="endPress()" 
+                onmouseleave="endPress()"
+                ontouchstart="startPress('${kw}')" 
+                ontouchend="endPress()">
+                ${kw} (${allKeywords[kw]})
+            </div>`;
+        }).join('');
     }
+
+    function toggleFilters() {
+        const wrapper = document.getElementById('kw-wrapper');
+        wrapper.style.display = (wrapper.style.display === 'none') ? 'flex' : 'none';
+    }
+
+    function toggleKeyword(kw) {
+        if (selectedKeywords.has(kw)) selectedKeywords.delete(kw);
+        else selectedKeywords.add(kw);
+        
+        document.getElementById(`btn-${kw}`).classList.toggle('active');
+        applyFilters();
+    }
+
+    function applyFilters() {
+        const maxPrice = parseInt(document.getElementById('maxPrice').value) || 9999;
+        const list = document.getElementById('platine-list');
+
+        // Calcul du score de correspondance pour chaque platine
+        const scored = dataPlatines.map(p => {
+            const pKeywords = p.keywords.split(',').map(k => k.trim().toLowerCase());
+            let score = 0;
+            selectedKeywords.forEach(sk => {
+                if (pKeywords.includes(sk)) score++;
+            });
+            return { ...p, score };
+        });
+
+        // Tri : 1. Budget respecté en premier ? (optionnel selon ton besoin, ici on trie par score)
+        // 2. Score le plus haut en premier
+        scored.sort((a, b) => b.score - a.score);
+
+        list.innerHTML = scored.map(p => {
+            const isVisible = p.price <= maxPrice ? 'flex' : 'none';
+            return `
+            <article class="platine-card" style="display: ${isVisible}">
+                <img src="${p.image}" class="platine-img">
+                <div class="platine-info">
+                    ${p.score > 0 ? `<span class="match-badge">✓ Correspond à ${p.score} critère(s)</span>` : ''}
+                    ${p.conseille ? '<span class="badge-conseille">Conseillé</span>' : ''}
+                    <h3>${p.name}</h3>
+                    <h4>${p.type}</h4>
+                    <p><strong>Avantages :</strong> ${p.avantages}</p>
+                    <div class="price-tag">${p.price}€</div>
+                </div>
+            </article>`;
+        }).join('');
+    }
+
+    // Gestion de l'appui long
+    let pressTimer;
+    function startPress(kw) {
+        pressTimer = setTimeout(() => {
+            const desc = dataKeywords[kw] || "Pas de description disponible.";
+            alert(`${kw.toUpperCase()} :\n${desc}`);
+        }, 600); // 600ms pour l'appui long
+    }
+    function endPress() { clearTimeout(pressTimer); }
+
+    document.getElementById('maxPrice').addEventListener('input', applyFilters);
+    window.onload = init;
 </script>
 
 </body>
