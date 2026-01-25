@@ -145,44 +145,64 @@
     }
     .btn-copy:hover { opacity: 1; background: #444; }
 
-    /* --- RESPONSIVE : TABLETTE & MOBILE --- */
+/* --- RESPONSIVE : TABLETTE & MOBILE --- */
     @media (max-width: 850px) {
         .home-grid { grid-template-columns: 1fr; }
         
-        /* Centrage global sur mobile */
+        /* Centrage du titre et de l'icône musique */
         #music-container h2 {
+            display: flex; /* Indispensable pour que justify-content marche */
             justify-content: center !important;
             text-align: center !important;
+            width: 100%;
         }
 
         .music-content-wrapper { 
             flex-direction: column !important; 
             align-items: center !important; 
+            text-align: center !important;
         }
 
         .music-img { 
             width: 100% !important; 
             max-width: 280px !important; 
-            margin: 0 auto 15px auto; 
+            margin: 0 auto 15px auto !important; 
+            display: block;
         }
 
         .music-info { 
             width: 100% !important; 
             text-align: center !important; 
+            display: flex !important;
+            flex-direction: column !important;
             align-items: center !important; 
         }
 
+        /* C'est ici qu'on force les lignes "Genre, Artiste, Format" au centre */
         .music-info p, 
-        .music-info div, 
+        .music-info div,
+        .music-info span,
         #music-history {
             text-align: center !important;
+            width: 100% !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+            display: block !important; /* Force le texte à prendre toute la largeur pour se centrer */
+        }
+
+        /* Si tu as des labels en gras (ex: Genre :), on les aligne aussi */
+        .music-info strong {
+            display: inline-block;
         }
 
         .discord-widget {
             margin-top: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
         }
     }
-</style>
+    </style>
 </head>
 <body>
 
