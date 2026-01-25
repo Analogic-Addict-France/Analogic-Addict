@@ -7,6 +7,40 @@
     <link rel="icon" type="image/png" href="../img/logo.png">
     <link rel="stylesheet" href="../style.css">
     <style>
+        /* Badge pour les platines conseillées */
+.badge-conseille {
+    display: inline-block;
+    background-color: #6d071a;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 5px;
+    font-size: 0.75em;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    border: 1px solid #920a22;
+}
+
+/* Le bouton "Solution Sans-Fil" (style de la photo) */
+.badge-sans-fil {
+    display: inline-block;
+    background-color: #6d071a;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-size: 0.85em;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid #920a22;
+    margin-top: 10px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+.badge-sans-fil:hover {
+    background-color: #920a22;
+    transform: scale(1.05);
+}
         .container { max-width: 1100px; margin: auto; padding: 20px; }
         
         /* Section Filtres */
@@ -155,40 +189,46 @@
         applyFilters();
     }
 
-    function applyFilters() {
-        const maxPrice = parseInt(document.getElementById('maxPrice').value) || 9999;
-        const list = document.getElementById('platine-list');
+function applyFilters() {
+    const maxPrice = parseInt(document.getElementById('maxPrice').value) || 9999;
+    const list = document.getElementById('platine-list');
 
-        // Calcul du score de correspondance pour chaque platine
-        const scored = dataPlatines.map(p => {
-            const pKeywords = p.keywords.split(',').map(k => k.trim().toLowerCase());
-            let score = 0;
-            selectedKeywords.forEach(sk => {
-                if (pKeywords.includes(sk)) score++;
-            });
-            return { ...p, score };
+    const scored = dataPlatines.map(p => {
+        const pKeywords = p.keywords.split(',').map(k => k.trim().toLowerCase());
+        let score = 0;
+        selectedKeywords.forEach(sk => {
+            if (pKeywords.includes(sk)) score++;
         });
+        return { ...p, score };
+    });
 
-        // Tri : 1. Budget respecté en premier ? (optionnel selon ton besoin, ici on trie par score)
-        // 2. Score le plus haut en premier
-        scored.sort((a, b) => b.score - a.score);
+    // Tri par score de critères
+    scored.sort((a, b) => b.score - a.score);
 
-        list.innerHTML = scored.map(p => {
-            const isVisible = p.price <= maxPrice ? 'flex' : 'none';
-            return `
-            <article class="platine-card" style="display: ${isVisible}">
-                <img src="${p.image}" class="platine-img">
-                <div class="platine-info">
-                    ${p.score > 0 ? `<span class="match-badge">✓ Correspond à ${p.score} critère(s)</span>` : ''}
-                    ${p.conseille ? '<span class="badge-conseille">Conseillé</span>' : ''}
-                    <h3>${p.name}</h3>
-                    <h4>${p.type}</h4>
-                    <p><strong>Avantages :</strong> ${p.avantages}</p>
-                    <div class="price-tag">${p.price}€</div>
-                </div>
-            </article>`;
-        }).join('');
-    }
+    list.innerHTML = scored.map(p => {
+        const isVisible = p.price <= maxPrice ? 'flex' : 'none';
+        
+        // Vérification automatique du tag Conseillé et du Bluetooth
+        const tagConseille = p.conseille ? `<span class="badge-conseille">Conseillé par l'équipe</span>` : '';
+        const boutonBluetooth = p.keywords.includes('bluetooth') ? `<a href="#" class="badge-sans-fil">Solution Sans-Fil</a>` : '';
+
+        return `
+        <article class="platine-card" style="display: ${isVisible}">
+            <img src="${p.image}" class="platine-img">
+            <div class="platine-info">
+                ${tagConseille}
+                ${p.score > 0 ? `<span class="match-badge">✓ Correspond à ${p.score} critère(s)</span>` : ''}
+                <h3>${p.name}</h3>
+                <h4>${p.type}</h4>
+                <p><strong>Avantages :</strong> ${p.avantages}</p>
+                
+                ${boutonBluetooth}
+
+                <div class="price-tag">${p.price}€</div>
+            </div>
+        </article>`;
+    }).join('');
+}
 
     // Gestion de l'appui long
     let pressTimer;
