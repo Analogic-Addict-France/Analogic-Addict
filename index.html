@@ -158,6 +158,33 @@
 .toggle-history:hover {
     background: rgba(255, 255, 255, 0.1);
 }
+        /* Styles pour mobile uniquement */
+@media (max-width: 768px) {
+    /* Centrage du titre et des informations de l'album */
+    .album-details, .music-description, h2 {
+        text-align: center !important;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Correction du bloc de description */
+    .music-description {
+        width: 100%;
+        padding: 15px;
+        box-sizing: border-box; /* Évite que le padding ne fasse déborder le texte */
+        margin: 10px 0;
+        line-height: 1.5; /* Améliore la lisibilité du texte centré */
+    }
+
+    /* Centrage des boutons en bas */
+    .button-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+}
     </style>
 </head>
 <body>
