@@ -120,7 +120,7 @@
     async function init() {
         try {
             const [resP, resK] = await Promise.all([
-                fetch('../json/platines.json'),
+                fetch('../json/sons.json'),
                 fetch('../json/keywords.json')
             ]);
             dataPlatines = await resP.json();
