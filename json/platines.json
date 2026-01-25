@@ -3,7 +3,7 @@
         "name": "Audio-Technica LP120xBT-USB",
         "type": "Manuelle",
         "price": 290,
-        "image": "https://media.discordapp.net/attachments/1341714407968997407/1342081964534141021/LD0005241408_2.jpg",
+        "image": "https://cdn.discordapp.com/attachments/1341714407968997407/1342081964534141021/LD0005241408_2.jpg?ex=6977433b&is=6975f1bb&hm=610f9fb4f6a60c1308a3cc15ff9dbc6008f6dd0c5367eeed1666ff2425767115&",
         "keywords": "manuelle, usb, bluetooth, préampli, 78t, entrainement direct, pitch",
         "avantages": "Platine semi-professionelle, préampli intégré, vitesse 78t disponible, entraînement direct, réglage pitch...",
         "inconvenients": "Assez compliqué à installer, platine manuelle."
@@ -14,7 +14,7 @@
         "price": 169,
         "image": "https://cdn.cultura.com/cdn-cgi/image/width=1200/media/pim/10626221_7bc0ceef_2",
         "conseille": true,
-        "keywords": "automatique, usb, préampli, pitch",
+        "keywords": "automatique, usb, préampli, pitch, contrepoids",
         "avantages": "Meilleur rapport qualité-prix, réglage pitch, contrepoids réglable avec cellule changeable...",
         "inconvenients": "Assez grande et assez difficile à mettre en place."
     },
@@ -23,7 +23,7 @@
         "type": "Auto-stop",
         "price": 199,
         "image": "https://cdn.cultura.com/cdn-cgi/image/width=830/media/pim/0846885010167_3.png",
-        "keywords": "auto-stop, usb, bluetooth, préampli, casque, eco-responsable",
+        "keywords": "auto-stop, usb, bluetooth, préampli, sortie casque",
         "avantages": "Bon rapport qualité-prix, sortie casque sur l'avant, préampli et sortie USB intégré...",
         "inconvenients": "Couvercle non fournis, pas d'auto-return."
     },
@@ -31,7 +31,7 @@
         "name": "Platine Valise",
         "type": "Auto-stop",
         "price": 60,
-        "image": "https://cdn.discordapp.com/attachments/1341714407968997407/1342084211330519050/LD0006169862.jpg",
+        "image": "https://cdn.discordapp.com/attachments/1341714407968997407/1342084211330519050/LD0006169862.jpg?ex=69774552&is=6975f3d2&hm=3d92a2c421c6d0d54d59a4810f3a5d4c1fc0832b88855c192369a820e46994e4&",
         "keywords": "auto-stop, transportable, enceintes intégrées",
         "avantages": "Transportable, enceintes intégrées, prix imbattable.",
         "inconvenients": "Qualité limitée, abîme les disques au long terme."
