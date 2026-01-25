@@ -1,0 +1,11 @@
+{
+    "usb": "Permet de numériser vos vinyles sur ordinateur.",
+    "bluetooth": "Permet de connecter des enceintes ou un casque sans fil.",
+    "automatique": "Le bras se pose et se retire tout seul d'un simple bouton.",
+    "manuelle": "Vous devez poser et retirer le bras vous-même.",
+    "auto-stop": "Le plateau s'arrête de tourner à la fin du disque.",
+    "préampli": "Peut être branchée directement sur n'importe quelle enceinte.",
+    "78t": "Compatible avec les vieux disques en gomme-laque.",
+    "pitch": "Permet de régler précisément la vitesse de rotation.",
+    "enceintes intégrées": "Tout-en-un, pas besoin de matériel supplémentaire."
+}
