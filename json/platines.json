@@ -47,6 +47,16 @@
         "avantages": "Bon rapport qualité-prix, platine très jolie et esthétique.",
         "inconvenients": "Pas de préampli, manuelle."
     },
+            {
+        "name": "Audio Technica LP70x",
+        "type": "Automatique",
+        "price": "249",
+        "image": "https://www.audio-technica.com/media/catalog/product/a/t/at-lp70x_bz_01a.png",
+        "conseille": true,
+        "keywords": "automatique, bluetooth, préampli, entrainement courroie",
+        "avantages": "Platine assez facile à installer et utiliser, poste ground pour le mode phono, meilleur cellule et meilleur esthétique que la LP60x",
+        "inconvenients": "Cellule non changeable et contrepoids non réglable."
+    },
         {
         "name": "Audio Technica LP60x",
         "type": "Automatique",
