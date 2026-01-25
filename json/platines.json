@@ -38,6 +38,16 @@
         "inconvenients": "Couvercle non fournis, pas d'auto-return."
     },
         {
+        "name": "ELIPSON Chroma 200",
+        "type": "Manuelle",
+        "price": 199,
+        "image": "https://image.son-video.com/images/article/elipson/ELICHR200RIANR/chroma-200-riaa-noir-mat_5e612c57a653c_1200.jpg?p=600",
+        "conseille": true,
+        "keywords": "manuelle, entrainement courroie",
+        "avantages": "Bon rapport qualité-prix, platine très jolie et esthétique.",
+        "inconvenients": "Pas de préampli, manuelle."
+    },
+        {
         "name": "Audio Technica LP60x",
         "type": "Automatique",
         "price": 130,
@@ -45,6 +55,15 @@
         "keywords": "automatique, usb, bluetooth, préampli, entrainement courroie",
         "avantages": "Platine facile à installer et a utiliser.",
         "inconvenients": "Cellule non changeable et contrepoids non réglable, pas de poste (visse) ground pour le mode phono."
+    },
+            {
+        "name": "Sony PSLX310BT",
+        "type": "Automatique",
+        "price": 210,
+        "image": "https://boulanger.scene7.com/is/image/Boulanger/4548736091948_h_f_l_1?wid=677&hei=677&resMode=sharp2&op_usm=1.75,0.3,2,0&fmt=png-alpha",
+        "keywords": "automatique, bluetooth, préampli, usb, entrainement courroie",
+        "avantages": "Platine facile à installer et a utiliser. Platine assez jolie.",
+        "inconvenients": "Cellule non changeable et contrepoids non réglable, câble souder à la carte, pas de poste (visse) ground pour le mode phono. Platine comparable à la LP60x"
     },
     {
         "name": "Platine Valise",
