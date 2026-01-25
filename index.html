@@ -247,7 +247,7 @@
 <script>
     let musicData = {};
 
-    fetch('data.json')
+    fetch('json/datas.json')
         .then(r => r.json())
         .then(data => {
             if (!Array.isArray(data) || data.length === 0) return;
