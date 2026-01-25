@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wiki - Transmetteur Bluetooth</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        /* On reprend exactement ton CSS de platine.html */
+        .container { max-width: 1100px; margin: auto; padding: 20px; }
+
+        #wiki-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .platine-card {
+            position: relative;
+            display: flex;
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 15px;
+            gap: 20px;
+            border-left: 5px solid var(--primary);
+            transition: transform 0.2s;
+        }
+
+        .platine-img { 
+            width: 200px; 
+            height: 200px; 
+            border-radius: 10px; 
+            object-fit: contain; /* Adapté pour l'accessoire */
+            background: #fff; 
+            padding: 15px;
+        }
+
+        .badge-conseille {
+            display: inline-block;
+            background-color: #6d071a;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 5px;
+            font-size: 0.75em;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            border: 1px solid #920a22;
+        }
+
+        .platine-info { 
+            flex: 1; 
+            display: flex; 
+            flex-direction: column; 
+            text-align: left !important; 
+            align-items: flex-start;
+        }
+
+        .price-tag { color: var(--primary); font-weight: bold; font-size: 1.2em; margin-top: auto; }
+
+        /* Ton responsive mobile identique */
+        @media (max-width: 600px) {
+            .platine-card { flex-direction: column; align-items: center; text-align: center; }
+            .platine-info { text-align: center; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header style="margin-bottom: 30px;">
+        <a href="../wiki.html" style="color: var(--primary); text-decoration: none;">← Retour au Wiki</a>
+        <h1 style="border-bottom: 2px solid var(--primary); padding-bottom: 10px; margin-top: 10px;">Accessoires : Transmetteur Bluetooth</h1>
+    </header>
+
+    <div id="wiki-list">
+        <article class="platine-card">
+            <img src="https://cdn.discordapp.com/attachments/1341714407968997407/1344241612943003791/S1249793566e747f894144bcef65ca920s.png" class="platine-img" alt="Transmetteur Bluetooth">
+            
+            <div class="platine-info">
+                <span class="badge-conseille">Astuce Budget</span>
+                <h3>Transmetteur Bluetooth Jack 3.5</h3>
+                <h4>Convertisseur Analogique vers Sans-fil</h4>
+                
+                <p>
+                    <strong>Description :</strong> Idéal si votre platine ou votre ampli n'a pas de Bluetooth natif. 
+                    Il permet de convertir un signal analogique en Bluetooth pour peu cher.<br>
+                    
+                    <strong>Installation :</strong> Il suffit de le brancher sur une sortie audio (sortie casque). 
+                    Si votre platine est préamplifiée, utilisez un câble RCA audio vers jack.<br>
+                    
+                    <strong>Conseil :</strong> Nous vous conseillons d'acheter cet adaptateur sur AliExpress, car ceux d'Amazon sont souvent trop chers.
+                </p>
+
+                <div style="display: flex; gap: 20px; width: 100%;">
+                    <div class="price-tag">Petit modèle : 10€</div>
+                    <div class="price-tag">Grand modèle : 30€</div>
+                </div>
+            </div>
+        </article>
+    </div>
+
+    <div class="discord-cta">
+        <p>Besoin d'aide pour brancher votre transmetteur ?</p>
+        <a href="https://discord.gg/dsN6a7bPPY" target="_blank" class="discord-btn">
+            <img src="https://cdn-icons-png.flaticon.com/256/6422/6422197.png" alt="Discord Icon">
+            Rejoins le Discord !
+        </a>
+    </div>
+</div>
+
+</body>
+</html>
